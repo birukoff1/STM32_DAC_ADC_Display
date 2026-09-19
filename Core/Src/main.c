@@ -216,13 +216,12 @@ int main(void)
 	  // ADC
 	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET); // CA Low
 	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET); // CB Low
-	  usDelay(2);
 
 	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET); // CA High
 	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET); // CB High
-	  usDelay(20);
+	  usDelay(10);
 
-
+	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
 	  i++;
 	  if (i >= N_DAC_voltage)
 		  i = 0;
@@ -283,27 +282,30 @@ void SystemClock_Config(void)
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-	if (GPIO_Pin == ADC_BUSY_Pin)
-	    {
-	        uint16_t adc_data;
+    if (GPIO_Pin == ADC_BUSY_Pin)
+    {
+        uint16_t adc_data;
 
-	        // CS LOW
-	        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_RESET);
+        // CS LOW
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_RESET);
 
-	        // Read 16 bits from D7
-	        for (int i = 0; i < N_ADC_channels; i++)
-	            {
-					HAL_SPI_Receive(&hspi3, (uint8_t *)adc_data, 1, HAL_MAX_DELAY);
-					V_ADC[i] = (int16_t)adc_data;
-	            }
+        // Read 8 × 16 bits from DOUTA
+        for (int i = 0; i < N_ADC_channels; i++)
+        {
+            HAL_SPI_Receive(&hspi3,
+                            (uint8_t *)&adc_data,
+                            1,
+                            HAL_MAX_DELAY);
 
-	        // CS HIGH
-	        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_SET);
+            V_ADC[i] = adc_data;
+        }
 
-	        //V_ADC_channel = V_ADC[2];
-	    }
+        // CS HIGH
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_SET);
+
+        V_ADC_channel = V_ADC[2];
+    }
 }
-
 /* USER CODE END 4 */
 
 /**
