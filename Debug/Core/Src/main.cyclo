@@ -1,5 +1,7 @@
-../Core/Src/main.c:52:6:DAC8568_Write	1
-../Core/Src/main.c:91:6:DAC8568_Init_SineTable	2
-../Core/Src/main.c:119:5:main	2
-../Core/Src/main.c:215:6:SystemClock_Config	3
-../Core/Src/main.c:284:6:Error_Handler	1
+../Core/Src/main.c:74:6:DAC8568_Write	1
+../Core/Src/main.c:96:6:DAC8568_Init_SineTable	2
+../Core/Src/main.c:115:6:usDelay	2
+../Core/Src/main.c:141:5:main	2
+../Core/Src/main.c:241:6:SystemClock_Config	3
+../Core/Src/main.c:284:6:HAL_GPIO_EXTI_Callback	3
+../Core/Src/main.c:313:6:Error_Handler	1

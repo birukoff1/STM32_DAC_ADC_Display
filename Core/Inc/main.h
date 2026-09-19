@@ -91,11 +91,13 @@ void Error_Handler(void);
 #define CLK_IN_GPIO_Port GPIOB
 #define LD3_Pin GPIO_PIN_13
 #define LD3_GPIO_Port GPIOD
+#define ADC_CA_Pin GPIO_PIN_8
+#define ADC_CA_GPIO_Port GPIOC
+#define ADC_CB_Pin GPIO_PIN_9
+#define ADC_CB_GPIO_Port GPIOC
 #define ADC_BUSY_Pin GPIO_PIN_8
 #define ADC_BUSY_GPIO_Port GPIOA
 #define ADC_BUSY_EXTI_IRQn EXTI9_5_IRQn
-#define ADC_CA_Pin GPIO_PIN_9
-#define ADC_CA_GPIO_Port GPIOA
 #define ADC_CS_Pin GPIO_PIN_10
 #define ADC_CS_GPIO_Port GPIOA
 #define SWDIO_Pin GPIO_PIN_13
