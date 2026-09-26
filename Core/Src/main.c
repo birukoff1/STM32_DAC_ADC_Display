@@ -21,6 +21,7 @@
 #include "spi.h"
 #include "tim.h"
 #include "gpio.h"
+#include "fsmc.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -105,11 +106,9 @@ void DAC8568_Init_SineTable(void)
 
 // ADC
 
-
-
 int V_ADC_channel;
-uint16_t V_ADC[N_ADC_channels];
-
+int16_t adc_data;
+float V_ADC[N_ADC_channels];
 
 // TIM1
 void usDelay(uint16_t useconds)
@@ -126,6 +125,8 @@ void usDelay(uint16_t useconds)
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
+
+void mainApp(void);
 
 /* USER CODE END PFP */
 
@@ -163,9 +164,9 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_SPI1_Init();
-  MX_SPI2_Init();
   MX_SPI3_Init();
   MX_TIM1_Init();
+  MX_FSMC_Init();
   /* USER CODE BEGIN 2 */
 
   // Starting the timer
@@ -195,22 +196,22 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  mainApp();
   while (1)
   {
 
 	  // DAC
 	  //V_DAC_phase1 = (i + (Phase_shift_channel1 * N_DAC_voltage) / 360) % N_DAC_voltage;
-	  //V_DAC_phase2 = (i + (Phase_shift_channel2 * N_DAC_voltage) / 360) % N_DAC_voltage;
+	  V_DAC_phase2 = (i + (Phase_shift_channel2 * N_DAC_voltage) / 360) % N_DAC_voltage;
 	  //V_DAC_phase3 = (i + (Phase_shift_channel3 * N_DAC_voltage) / 360) % N_DAC_voltage;
 	  //V_DAC_phase4 = (i + (Phase_shift_channel4 * N_DAC_voltage) / 360) % N_DAC_voltage;
 	  //V_DAC_phase5 = (i + (Phase_shift_channel5 * N_DAC_voltage) / 360) % N_DAC_voltage;
 
 	  //DAC8568_Write(V_DAC[V_DAC_phase1], 1);
-	  //DAC8568_Write(V_DAC[V_DAC_phase2], 2);
+	  DAC8568_Write(V_DAC[V_DAC_phase2], 2);
 	  //DAC8568_Write(V_DAC[V_DAC_phase3], 3);
 	  //DAC8568_Write(V_DAC[V_DAC_phase4], 4);
 	  //DAC8568_Write(V_DAC[V_DAC_phase5], 5);
-
 
 
 	  // ADC
@@ -221,11 +222,11 @@ int main(void)
 	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET); // CB High
 	  usDelay(10);
 
-	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
+	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_RESET);
+
 	  i++;
 	  if (i >= N_DAC_voltage)
 		  i = 0;
-
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -284,8 +285,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
     if (GPIO_Pin == ADC_BUSY_Pin)
     {
-        uint16_t adc_data;
-
         // CS LOW
         HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_RESET);
 
@@ -297,10 +296,11 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
                             1,
                             HAL_MAX_DELAY);
 
-            V_ADC[i] = adc_data;
+            V_ADC[i] = (float)adc_data * 5.0f / 32768.0f;
         }
 
         // CS HIGH
+        usDelay(5);
         HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_SET);
 
         V_ADC_channel = V_ADC[2];
