@@ -30,7 +30,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Core/Inc/spi.h ../Core/Inc/main.h ../Core/Inc/tim.h \
- ../Core/Inc/gpio.h ../Core/Inc/fsmc.h
+ ../Core/Inc/gpio.h ../Core/Inc/fsmc.h ../Core/Src/Lcd/ili9486.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -67,3 +67,4 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/tim.h:
 ../Core/Inc/gpio.h:
 ../Core/Inc/fsmc.h:
+../Core/Src/Lcd/ili9486.h:

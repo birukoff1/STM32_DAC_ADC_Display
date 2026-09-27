@@ -27,6 +27,7 @@
 /* USER CODE BEGIN Includes */
 #include <stdbool.h>
 #include <math.h>
+#include "ili9486.h"
 
 /* USER CODE END Includes */
 
@@ -106,7 +107,6 @@ void DAC8568_Init_SineTable(void)
 
 // ADC
 
-int V_ADC_channel;
 int16_t adc_data;
 float V_ADC[N_ADC_channels];
 
@@ -125,9 +125,7 @@ void usDelay(uint16_t useconds)
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
 void mainApp(void);
-
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -196,29 +194,28 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  mainApp();
+  //mainApp();
   while (1)
   {
 
 	  // DAC
 	  //V_DAC_phase1 = (i + (Phase_shift_channel1 * N_DAC_voltage) / 360) % N_DAC_voltage;
-	  V_DAC_phase2 = (i + (Phase_shift_channel2 * N_DAC_voltage) / 360) % N_DAC_voltage;
+	  //V_DAC_phase2 = (i + (Phase_shift_channel2 * N_DAC_voltage) / 360) % N_DAC_voltage;
 	  //V_DAC_phase3 = (i + (Phase_shift_channel3 * N_DAC_voltage) / 360) % N_DAC_voltage;
 	  //V_DAC_phase4 = (i + (Phase_shift_channel4 * N_DAC_voltage) / 360) % N_DAC_voltage;
 	  //V_DAC_phase5 = (i + (Phase_shift_channel5 * N_DAC_voltage) / 360) % N_DAC_voltage;
 
 	  //DAC8568_Write(V_DAC[V_DAC_phase1], 1);
-	  DAC8568_Write(V_DAC[V_DAC_phase2], 2);
+	  //DAC8568_Write(V_DAC[V_DAC_phase2], 2);
 	  //DAC8568_Write(V_DAC[V_DAC_phase3], 3);
 	  //DAC8568_Write(V_DAC[V_DAC_phase4], 4);
 	  //DAC8568_Write(V_DAC[V_DAC_phase5], 5);
 
 
 	  // ADC
-	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET); // CA Low
+
 	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET); // CB Low
 
-	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET); // CA High
 	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET); // CB High
 	  usDelay(10);
 
@@ -227,6 +224,9 @@ int main(void)
 	  i++;
 	  if (i >= N_DAC_voltage)
 		  i = 0;
+	  //
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -302,10 +302,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         // CS HIGH
         usDelay(5);
         HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_SET);
-
-        V_ADC_channel = V_ADC[2];
     }
 }
+
 /* USER CODE END 4 */
 
 /**
