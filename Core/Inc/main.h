@@ -89,8 +89,6 @@ void Error_Handler(void);
 #define BOOT1_GPIO_Port GPIOB
 #define CLK_IN_Pin GPIO_PIN_10
 #define CLK_IN_GPIO_Port GPIOB
-#define ADC_CA_Pin GPIO_PIN_8
-#define ADC_CA_GPIO_Port GPIOC
 #define ADC_CB_Pin GPIO_PIN_9
 #define ADC_CB_GPIO_Port GPIOC
 #define ADC_BUSY_Pin GPIO_PIN_8

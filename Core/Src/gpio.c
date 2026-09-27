@@ -67,7 +67,7 @@ void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOB, SPI1_CLR_Pin|SPI1_LDAC_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, ADC_CA_Pin|ADC_CB_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(ADC_CB_GPIO_Port, ADC_CB_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(FSMC_RST_GPIO_Port, FSMC_RST_Pin, GPIO_PIN_RESET);
@@ -79,8 +79,8 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(CS_I2C_SPI_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : OTG_FS_PowerSwitchOn_Pin ADC_CA_Pin ADC_CB_Pin */
-  GPIO_InitStruct.Pin = OTG_FS_PowerSwitchOn_Pin|ADC_CA_Pin|ADC_CB_Pin;
+  /*Configure GPIO pins : OTG_FS_PowerSwitchOn_Pin ADC_CB_Pin */
+  GPIO_InitStruct.Pin = OTG_FS_PowerSwitchOn_Pin|ADC_CB_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

@@ -194,7 +194,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  //mainApp();
+  mainApp();
   while (1)
   {
 

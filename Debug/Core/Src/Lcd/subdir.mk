@@ -9,20 +9,20 @@ C_SRCS += \
 ../Core/Src/Lcd/lcd_io_fsmc8.c \
 ../Core/Src/Lcd/stm32_adafruit_lcd.c 
 
-OBJS += \
-./Core/Src/Lcd/ili9486.o \
-./Core/Src/Lcd/lcd_io_fsmc8.o \
-./Core/Src/Lcd/stm32_adafruit_lcd.o 
-
 C_DEPS += \
 ./Core/Src/Lcd/ili9486.d \
 ./Core/Src/Lcd/lcd_io_fsmc8.d \
 ./Core/Src/Lcd/stm32_adafruit_lcd.d 
 
+OBJS += \
+./Core/Src/Lcd/ili9486.o \
+./Core/Src/Lcd/lcd_io_fsmc8.o \
+./Core/Src/Lcd/stm32_adafruit_lcd.o 
+
 
 # Each subdirectory must supply rules for building sources it contributes
 Core/Src/Lcd/%.o Core/Src/Lcd/%.su Core/Src/Lcd/%.cyclo: ../Core/Src/Lcd/%.c Core/Src/Lcd/subdir.mk
-	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Core/Src/Lcd -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Core/Src/Lcd -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 
 clean: clean-Core-2f-Src-2f-Lcd
 
