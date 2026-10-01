@@ -1,3 +1,10 @@
+#ifndef __LCD_IO_FSMC8_H
+#define __LCD_IO_FSMC8_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*
  * 8 bit paralell LCD FSMC driver
  * 5 controll pins (CS, RS, WR, RD, RST) + 8 data pins + backlight pin
@@ -32,3 +39,9 @@
    - 0..7: Stream
    - 1..3: DMA priority (0=low..3=very high) */
 #define LCD_DMA           0, 0, 0, 0
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

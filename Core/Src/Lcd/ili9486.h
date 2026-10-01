@@ -1,3 +1,10 @@
+#ifndef __ILI9486_H
+#define __ILI9486_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* Orientation
    - 0: 240x320 portrait 0'
    - 1: 320x240 landscape 90'
@@ -39,3 +46,17 @@
 //-----------------------------------------------------------------------------
 // CHANGES
 void ili9486_Init(void);
+
+
+void ili9486_DrawRGBImage(
+    uint16_t Xpos,
+    uint16_t Ypos,
+    uint16_t Xsize,
+    uint16_t Ysize,
+    uint16_t *pData);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

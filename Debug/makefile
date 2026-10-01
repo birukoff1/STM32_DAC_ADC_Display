@@ -9,11 +9,21 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include TouchGFX/target/generated/subdir.mk
+-include TouchGFX/target/subdir.mk
+-include TouchGFX/gui/src/screen1_screen/subdir.mk
+-include TouchGFX/gui/src/model/subdir.mk
+-include TouchGFX/gui/src/common/subdir.mk
+-include TouchGFX/generated/texts/src/subdir.mk
+-include TouchGFX/generated/images/src/subdir.mk
+-include TouchGFX/generated/gui_generated/src/screen1_screen/subdir.mk
+-include TouchGFX/generated/gui_generated/src/common/subdir.mk
+-include TouchGFX/generated/fonts/src/subdir.mk
+-include TouchGFX/App/subdir.mk
 -include Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/Lcd/Fonts/subdir.mk
 -include Core/Src/Lcd/subdir.mk
--include Core/Src/App/subdir.mk
 -include Core/Src/subdir.mk
 -include objects.mk
 
@@ -88,7 +98,7 @@ main-build: ADC_DAC_Display.elf secondary-outputs
 
 # Tool invocations
 ADC_DAC_Display.elf ADC_DAC_Display.map: $(OBJS) $(USER_OBJS) D:\ST\STM_Projects\ADC_DAC_Display\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "ADC_DAC_Display.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\ST\STM_Projects\ADC_DAC_Display\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_DAC_Display.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+	arm-none-eabi-g++ -o "ADC_DAC_Display.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\ST\STM_Projects\ADC_DAC_Display\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_DAC_Display.map" -Wl,--gc-sections -static -L"D:\ST\STM_Projects\ADC_DAC_Display\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

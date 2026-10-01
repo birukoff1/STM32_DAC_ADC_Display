@@ -18,10 +18,12 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "crc.h"
 #include "spi.h"
 #include "tim.h"
 #include "gpio.h"
 #include "fsmc.h"
+#include "app_touchgfx.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -130,7 +132,7 @@ void mainApp(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+extern void touchgfxSignalVSync(void);
 /* USER CODE END 0 */
 
 /**
@@ -165,6 +167,8 @@ int main(void)
   MX_SPI3_Init();
   MX_TIM1_Init();
   MX_FSMC_Init();
+  MX_CRC_Init();
+  MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
 
   // Starting the timer
@@ -174,31 +178,31 @@ int main(void)
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET); // DAC8668_SYNC_High
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET); // DAC8668_CLR_High
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_SET); //DAC8668_LDAC_High
-  HAL_Delay(10);
 
   DAC8568_Init_SineTable();
 
-
-  // Initial states for SPI2 (ADC)
-  HAL_Delay(10);
 
   // Initial states for SPI3 (ADC)
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET); // CA High
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET); // CA High
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_SET); // CS Low
 
-  HAL_Delay(10);
+
+  // Initial states for the display
+
+  ili9486_Init();
 
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  mainApp();
+  //mainApp();
   while (1)
   {
 
 	  // DAC
+	  /*
 	  //V_DAC_phase1 = (i + (Phase_shift_channel1 * N_DAC_voltage) / 360) % N_DAC_voltage;
 	  //V_DAC_phase2 = (i + (Phase_shift_channel2 * N_DAC_voltage) / 360) % N_DAC_voltage;
 	  //V_DAC_phase3 = (i + (Phase_shift_channel3 * N_DAC_voltage) / 360) % N_DAC_voltage;
@@ -211,24 +215,21 @@ int main(void)
 	  //DAC8568_Write(V_DAC[V_DAC_phase4], 4);
 	  //DAC8568_Write(V_DAC[V_DAC_phase5], 5);
 
-
-	  // ADC
-
-	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET); // CB Low
-
-	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET); // CB High
-	  usDelay(10);
-
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_RESET);
-
 	  i++;
 	  if (i >= N_DAC_voltage)
 		  i = 0;
-	  //
+
+
+	  // ADC
+	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET); // CB Low
+	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET); // CB High
+	  usDelay(10);
+	  */
 
 
     /* USER CODE END WHILE */
-
+	  touchgfxSignalVSync();
+	  MX_TouchGFX_Process();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -281,6 +282,7 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
+// ADC interruption for BUST falling edge
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
     if (GPIO_Pin == ADC_BUSY_Pin)
@@ -304,6 +306,11 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_SET);
     }
 }
+
+
+// Display TouchGFX function
+
+
 
 /* USER CODE END 4 */
 
