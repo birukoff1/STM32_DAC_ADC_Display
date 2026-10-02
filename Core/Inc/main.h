@@ -32,11 +32,14 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#define N_DAC_voltage 30 // Amount of points in one period
+#define N_ADC_channels 8 // Amount of ADC channels
+extern volatile float V_ADC[N_ADC_channels];
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/

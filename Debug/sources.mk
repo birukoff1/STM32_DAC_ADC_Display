@@ -38,6 +38,7 @@ CPP_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+Core/Src/App \
 Core/Src/Lcd/Fonts \
 Core/Src/Lcd \
 Core/Src \
@@ -48,6 +49,7 @@ TouchGFX/generated/fonts/src \
 TouchGFX/generated/gui_generated/src/common \
 TouchGFX/generated/gui_generated/src/screen1_screen \
 TouchGFX/generated/images/src \
+TouchGFX/generated/images/src/__generated \
 TouchGFX/generated/texts/src \
 TouchGFX/gui/src/common \
 TouchGFX/gui/src/model \

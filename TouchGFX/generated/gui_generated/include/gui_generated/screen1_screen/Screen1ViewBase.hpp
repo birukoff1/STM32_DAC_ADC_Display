@@ -8,7 +8,9 @@
 #include <mvp/View.hpp>
 #include <gui/screen1_screen/Screen1Presenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/widgets/Gauge.hpp>
+#include <touchgfx/widgets/canvas/PainterRGB565.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
@@ -16,6 +18,15 @@ public:
     Screen1ViewBase();
     virtual ~Screen1ViewBase();
     virtual void setupScreen();
+    virtual void handleTickEvent();
+
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void SetVoltageDC()
+    {
+        // Override and implement this function in Screen1
+    }
 
 protected:
     FrontendApplication& application() {
@@ -26,10 +37,35 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
+    touchgfx::Box Background;
+    touchgfx::TextAreaWithOneWildcard AC_voltage;
+    touchgfx::TextAreaWithOneWildcard DC_voltage;
+    touchgfx::Gauge gauge1;
+    touchgfx::PainterRGB565 gauge1Painter;
     touchgfx::Box box1;
-    touchgfx::TextArea textArea1;
+    touchgfx::TextAreaWithOneWildcard Phase_shift_1;
+
+    /*
+     * Wildcard Buffers
+     */
+    static const uint16_t DC_VOLTAGE_SIZE = 100;
+    touchgfx::Unicode::UnicodeChar DC_voltageBuffer[DC_VOLTAGE_SIZE];
 
 private:
+
+    /*
+     * Canvas Buffer Size
+     */
+    static const uint32_t CANVAS_BUFFER_SIZE = 7200;
+    uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
+
+    /*
+     * Tick Counter Declarations
+     */
+    static const uint32_t TICK_CHANGE_DC_VOLTAGE_INTERVAL = 10;
+    uint32_t frameCountChange_DC_voltageInterval;
+    static const uint32_t TICK_CHANGE_PHASE_SHIFT_1_INTERVAL = 100;
+    uint32_t frameCountChange_Phase_shift_1Interval;
 
 };
 

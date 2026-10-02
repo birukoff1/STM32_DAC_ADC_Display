@@ -42,8 +42,8 @@
 /* USER CODE BEGIN PD */
 
 // Defines for SPI1
-#define N_DAC_voltage 30 // Amount of points in one period
-#define N_ADC_channels 8 // Amount of ADC channels
+//#define N_DAC_voltage 30 // Amount of points in one period
+//#define N_ADC_channels 8 // Amount of ADC channels
 
 /* USER CODE END PD */
 
@@ -110,7 +110,7 @@ void DAC8568_Init_SineTable(void)
 // ADC
 
 int16_t adc_data;
-float V_ADC[N_ADC_channels];
+volatile float V_ADC[N_ADC_channels];
 
 // TIM1
 void usDelay(uint16_t useconds)
@@ -218,18 +218,25 @@ int main(void)
 	  i++;
 	  if (i >= N_DAC_voltage)
 		  i = 0;
-
+	  */
 
 	  // ADC
 	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET); // CB Low
 	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET); // CB High
 	  usDelay(10);
-	  */
+
 
 
     /* USER CODE END WHILE */
+
+	  //i++;
+	  //if (i % 10 == N_DAC_voltage)
+
 	  touchgfxSignalVSync();
 	  MX_TouchGFX_Process();
+
+	  if (i == 1000)
+		  i = 0;
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

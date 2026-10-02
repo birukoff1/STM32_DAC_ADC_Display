@@ -3,33 +3,137 @@
     "Screens": [
       {
         "Name": "Screen1",
+        "CanvasBufferSize": 7200,
         "Components": [
           {
             "Type": "Box",
-            "Name": "box1",
-            "X": 59,
-            "Y": 32,
-            "Width": 181,
-            "Height": 121,
+            "Name": "Background",
+            "Width": 480,
+            "Height": 320,
             "Color": {
-              "Red": 212,
-              "Green": 55,
-              "Blue": 55
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
             }
           },
           {
             "Type": "TextArea",
-            "Name": "textArea1",
-            "X": 184,
-            "Y": 254,
-            "Width": 119,
-            "Height": 24,
+            "Name": "AC_voltage",
+            "X": 14,
+            "Y": 104,
+            "Width": 275,
+            "Height": 48,
             "TextId": "__SingleUse_2BLA",
             "TextRotation": "0",
-            "AutoSize": true
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_5LZL"
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "DC_voltage",
+            "X": 14,
+            "Y": 33,
+            "Width": 279,
+            "Height": 48,
+            "TextId": "__SingleUse_YE7J",
+            "TextRotation": "0",
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_FEU2",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          },
+          {
+            "Type": "Gauge",
+            "Name": "gauge1",
+            "X": 360,
+            "Y": 33,
+            "Width": 120,
+            "Height": 120,
+            "FileNameBackground": "__generated\\alternate_theme_images_widgets_gauge_tiny_backgrounds_dark_filled.png",
+            "RotationCenterX": 60.0,
+            "RotationCenterY": 60.0,
+            "StartAngle": -120.0,
+            "EndAngle": 120.0,
+            "RangeMax": 2000.0,
+            "Easing": "Linear",
+            "EasingOption": "In",
+            "FileNameNeedle": "__generated\\alternate_theme_images_widgets_gauge_tiny_needles_rough.png",
+            "NeedleRotationCenterX": 5.0,
+            "NeedleRotationCenterY": 33.0,
+            "NeedleMovingRenderingAlgorithm": "Bilinear Interpolation",
+            "NeedleSteadyRenderingAlgorithm": "Bilinear Interpolation",
+            "UseArc": true,
+            "ArcColor": {
+              "Red": 20,
+              "Green": 151,
+              "Blue": 197
+            },
+            "SetArcPosition": true,
+            "ArcX": 12.0,
+            "ArcY": 12.0,
+            "ArcWidth": 95.0,
+            "ArcHeight": 71.0,
+            "ArcRadius": 50.0,
+            "ArcLineWidth": 49.0,
+            "ArcCapStyle": "Butt"
+          },
+          {
+            "Type": "Box",
+            "Name": "box1",
+            "Y": 175,
+            "Width": 480,
+            "Height": 145,
+            "Color": {
+              "Red": 132,
+              "Green": 151,
+              "Blue": 181
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Phase_shift_1",
+            "X": 14,
+            "Y": 235,
+            "Width": 88,
+            "Height": 20,
+            "TextId": "__SingleUse_3FGH",
+            "TextRotation": "0",
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_LG0E"
+            }
           }
         ],
-        "Interactions": []
+        "Interactions": [
+          {
+            "InteractionName": "Change_DC_voltage",
+            "Trigger": {
+              "Type": "TriggerOnEveryTick",
+              "TickCount": 10
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "SetVoltageDC"
+            }
+          },
+          {
+            "InteractionName": "Change_Phase_shift_1",
+            "Trigger": {
+              "Type": "TriggerOnEveryTick",
+              "TickCount": 100
+            },
+            "Action": {
+              "Type": "ActionUpdateValue",
+              "Value": 1,
+              "Duration": 10,
+              "ActionComponent": "gauge1"
+            }
+          }
+        ]
       }
     ],
     "CustomContainerDefinitions": [],

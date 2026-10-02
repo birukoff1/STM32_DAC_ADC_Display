@@ -1,3 +1,4 @@
+"./Core/Src/App/3d_filled_vector.o"
 "./Core/Src/Lcd/Fonts/font12.o"
 "./Core/Src/Lcd/Fonts/font16.o"
 "./Core/Src/Lcd/Fonts/font20.o"
@@ -62,6 +63,8 @@
 "./TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.o"
 "./TouchGFX/generated/images/src/BitmapDatabase.o"
 "./TouchGFX/generated/images/src/SVGDatabase.o"
+"./TouchGFX/generated/images/src/__generated/image_alternate_theme_images_widgets_gauge_tiny_backgrounds_dark_filled.o"
+"./TouchGFX/generated/images/src/__generated/image_alternate_theme_images_widgets_gauge_tiny_needles_rough.o"
 "./TouchGFX/generated/texts/src/LanguageGb.o"
 "./TouchGFX/generated/texts/src/Texts.o"
 "./TouchGFX/generated/texts/src/TypedTextDatabase.o"

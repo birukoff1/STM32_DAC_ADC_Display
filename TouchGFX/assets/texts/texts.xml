@@ -4,16 +4,30 @@
     <Language Id="GB" />
   </Languages>
   <Texts>
-    <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_2BLA" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">Hello, bitch!</Translation>
+      <Text Id="__SingleUse_LG0E" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_3FGH" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Phase: &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_5LZL" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_FEU2" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_YE7J" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">DC Voltage: &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_2BLA" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">AC Voltage: &lt;value&gt;</Translation>
       </Text>
     </TextGroup>
   </Texts>
   <Typographies>
     <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters=".,%" WildcardCharacterRanges="0-9,a-z,A-Z" />
     <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
   </Typographies>
 </TextDatabase>
