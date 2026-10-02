@@ -13,7 +13,7 @@ public:
     virtual ~Screen1View() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
-    virtual void SetVoltageDC();
+    virtual void UpdateValues();
 
 protected:
 };

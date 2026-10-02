@@ -8,8 +8,7 @@
 #include <images/BitmapDatabase.hpp>
 
 Screen1ViewBase::Screen1ViewBase() :
-    frameCountChange_DC_voltageInterval(0),
-    frameCountChange_Phase_shift_1Interval(0)
+    frameCountUpdateValuesInterval(0)
 {
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
 
@@ -21,25 +20,23 @@ Screen1ViewBase::Screen1ViewBase() :
     Background.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     add(Background);
 
-    AC_voltage.setXY(14, 104);
+    AC_voltage.setPosition(14, 104, 338, 49);
     AC_voltage.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     AC_voltage.setLinespacing(0);
     AC_voltage.setWildcard(touchgfx::TypedText(T___SINGLEUSE_5LZL).getText());
-    AC_voltage.resizeToCurrentText();
     AC_voltage.setTypedText(touchgfx::TypedText(T___SINGLEUSE_2BLA));
     add(AC_voltage);
 
-    DC_voltage.setXY(14, 33);
+    DC_voltage.setPosition(14, 33, 338, 48);
     DC_voltage.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     DC_voltage.setLinespacing(0);
     Unicode::snprintf(DC_voltageBuffer, DC_VOLTAGE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_FEU2).getText());
     DC_voltage.setWildcard(DC_voltageBuffer);
-    DC_voltage.resizeToCurrentText();
     DC_voltage.setTypedText(touchgfx::TypedText(T___SINGLEUSE_YE7J));
     add(DC_voltage);
 
     gauge1.setBackground(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_GAUGE_TINY_BACKGROUNDS_DARK_FILLED_ID));
-    gauge1.setPosition(360, 33, 120, 120);
+    gauge1.setPosition(352, 33, 120, 120);
     gauge1.setCenter(60, 60);
     gauge1.setStartEndAngle(-120, 120);
     gauge1.setRange(0, 2000);
@@ -56,17 +53,49 @@ Screen1ViewBase::Screen1ViewBase() :
     gauge1.setArcPosition(12, 12, 95, 71);
     add(gauge1);
 
-    box1.setPosition(0, 175, 480, 145);
+    box1.setPosition(0, 202, 480, 118);
     box1.setColor(touchgfx::Color::getColorFromRGB(132, 151, 181));
     add(box1);
 
-    Phase_shift_1.setXY(14, 235);
+    Phase_shift.setXY(25, 218);
+    Phase_shift.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    Phase_shift.setLinespacing(0);
+    Phase_shift.setTypedText(touchgfx::TypedText(T___SINGLEUSE_3FGH));
+    add(Phase_shift);
+
+    Phase_shift_1.setPosition(20, 261, 60, 32);
     Phase_shift_1.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Phase_shift_1.setLinespacing(0);
-    Phase_shift_1.setWildcard(touchgfx::TypedText(T___SINGLEUSE_LG0E).getText());
-    Phase_shift_1.resizeToCurrentText();
-    Phase_shift_1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_3FGH));
+    Phase_shift_1.setWildcard(touchgfx::TypedText(T___SINGLEUSE_X3MD).getText());
+    Phase_shift_1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_RNFM));
     add(Phase_shift_1);
+
+    Phase_shift_2.setPosition(110, 261, 60, 32);
+    Phase_shift_2.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    Phase_shift_2.setLinespacing(0);
+    Phase_shift_2.setWildcard(touchgfx::TypedText(T___SINGLEUSE_DQSS).getText());
+    Phase_shift_2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_6YFR));
+    add(Phase_shift_2);
+
+    Phase_shift_3.setPosition(210, 261, 60, 32);
+    Phase_shift_3.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    Phase_shift_3.setLinespacing(0);
+    Phase_shift_3.setTypedText(touchgfx::TypedText(T___SINGLEUSE_JE01));
+    add(Phase_shift_3);
+
+    Phase_shift_4.setPosition(303, 261, 60, 32);
+    Phase_shift_4.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    Phase_shift_4.setLinespacing(0);
+    Phase_shift_4.setWildcard(touchgfx::TypedText(T___SINGLEUSE_FZ21).getText());
+    Phase_shift_4.setTypedText(touchgfx::TypedText(T___SINGLEUSE_B8FJ));
+    add(Phase_shift_4);
+
+    Phase_shift_5.setPosition(396, 261, 60, 32);
+    Phase_shift_5.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    Phase_shift_5.setLinespacing(0);
+    Phase_shift_5.setWildcard(touchgfx::TypedText(T___SINGLEUSE_5CC1).getText());
+    Phase_shift_5.setTypedText(touchgfx::TypedText(T___SINGLEUSE_EPG0));
+    add(Phase_shift_5);
 }
 
 Screen1ViewBase::~Screen1ViewBase()
@@ -81,23 +110,13 @@ void Screen1ViewBase::setupScreen()
 
 void Screen1ViewBase::handleTickEvent()
 {
-    frameCountChange_DC_voltageInterval++;
-    if(frameCountChange_DC_voltageInterval == TICK_CHANGE_DC_VOLTAGE_INTERVAL)
+    frameCountUpdateValuesInterval++;
+    if(frameCountUpdateValuesInterval == TICK_UPDATEVALUES_INTERVAL)
     {
-        //Change_DC_voltage
+        //UpdateValues
         //When every N tick call virtual function
-        //Call SetVoltageDC
-        SetVoltageDC();
-        frameCountChange_DC_voltageInterval = 0;
-    }
-
-    frameCountChange_Phase_shift_1Interval++;
-    if(frameCountChange_Phase_shift_1Interval == TICK_CHANGE_PHASE_SHIFT_1_INTERVAL)
-    {
-        //Change_Phase_shift_1
-        //When every N tick update value gauge1
-        //Update value gauge1 over 10ms time
-        gauge1.updateValue(1, 1);
-        frameCountChange_Phase_shift_1Interval = 0;
+        //Call UpdateValues
+        UpdateValues();
+        frameCountUpdateValuesInterval = 0;
     }
 }

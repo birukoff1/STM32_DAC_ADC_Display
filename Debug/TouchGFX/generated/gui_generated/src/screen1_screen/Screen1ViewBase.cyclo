@@ -87,7 +87,7 @@
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/AbstractPainterRGB565.hpp:34:7:virtual touchgfx::AbstractPainterRGB565::~AbstractPainterRGB565()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/PainterRGB565.hpp:42:5:touchgfx::PainterRGB565::PainterRGB565(touchgfx::colortype)	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/PainterRGB565.hpp:47:18:virtual void touchgfx::PainterRGB565::setColor(touchgfx::colortype)	1
-../TouchGFX/generated/gui_generated/include/gui_generated/screen1_screen/Screen1ViewBase.hpp:26:18:virtual void Screen1ViewBase::SetVoltageDC()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen1_screen/Screen1ViewBase.hpp:27:18:virtual void Screen1ViewBase::UpdateValues()	1
 ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:36:7:touchgfx::View<Screen1Presenter>::~View()	1
 ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:36:7:virtual touchgfx::View<Screen1Presenter>::~View()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp:29:7:touchgfx::Box::~Box()	1
@@ -109,10 +109,10 @@
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/PainterRGB565.hpp:34:7:touchgfx::PainterRGB565::~PainterRGB565()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/PainterRGB565.hpp:34:7:virtual touchgfx::PainterRGB565::~PainterRGB565()	1
 ../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:10:1:Screen1ViewBase::Screen1ViewBase()	1
-../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:72:1:Screen1ViewBase::~Screen1ViewBase()	1
-../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:72:1:virtual Screen1ViewBase::~Screen1ViewBase()	1
-../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:77:6:virtual void Screen1ViewBase::setupScreen()	1
-../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:82:6:virtual void Screen1ViewBase::handleTickEvent()	3
+../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:101:1:Screen1ViewBase::~Screen1ViewBase()	1
+../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:101:1:virtual Screen1ViewBase::~Screen1ViewBase()	1
+../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:106:6:virtual void Screen1ViewBase::setupScreen()	1
+../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:111:6:virtual void Screen1ViewBase::handleTickEvent()	2
 ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:39:5:touchgfx::View<T>::View() [with T = Screen1Presenter]	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/Circle.hpp:162:10:void touchgfx::Circle::setRadius(T) [with T = int]	2
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/Circle.hpp:374:10:void touchgfx::Circle::setLineWidth(T) [with T = int]	2

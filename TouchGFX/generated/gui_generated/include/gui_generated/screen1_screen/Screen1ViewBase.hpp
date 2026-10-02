@@ -11,6 +11,7 @@
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/widgets/Gauge.hpp>
 #include <touchgfx/widgets/canvas/PainterRGB565.hpp>
+#include <touchgfx/widgets/TextArea.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
@@ -23,7 +24,7 @@ public:
     /*
      * Virtual Action Handlers
      */
-    virtual void SetVoltageDC()
+    virtual void UpdateValues()
     {
         // Override and implement this function in Screen1
     }
@@ -43,12 +44,17 @@ protected:
     touchgfx::Gauge gauge1;
     touchgfx::PainterRGB565 gauge1Painter;
     touchgfx::Box box1;
+    touchgfx::TextArea Phase_shift;
     touchgfx::TextAreaWithOneWildcard Phase_shift_1;
+    touchgfx::TextAreaWithOneWildcard Phase_shift_2;
+    touchgfx::TextArea Phase_shift_3;
+    touchgfx::TextAreaWithOneWildcard Phase_shift_4;
+    touchgfx::TextAreaWithOneWildcard Phase_shift_5;
 
     /*
      * Wildcard Buffers
      */
-    static const uint16_t DC_VOLTAGE_SIZE = 100;
+    static const uint16_t DC_VOLTAGE_SIZE = 20;
     touchgfx::Unicode::UnicodeChar DC_voltageBuffer[DC_VOLTAGE_SIZE];
 
 private:
@@ -62,10 +68,8 @@ private:
     /*
      * Tick Counter Declarations
      */
-    static const uint32_t TICK_CHANGE_DC_VOLTAGE_INTERVAL = 10;
-    uint32_t frameCountChange_DC_voltageInterval;
-    static const uint32_t TICK_CHANGE_PHASE_SHIFT_1_INTERVAL = 100;
-    uint32_t frameCountChange_Phase_shift_1Interval;
+    static const uint32_t TICK_UPDATEVALUES_INTERVAL = 100;
+    uint32_t frameCountUpdateValuesInterval;
 
 };
 

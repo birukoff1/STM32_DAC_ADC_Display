@@ -21,11 +21,10 @@
             "Name": "AC_voltage",
             "X": 14,
             "Y": 104,
-            "Width": 275,
-            "Height": 48,
+            "Width": 338,
+            "Height": 49,
             "TextId": "__SingleUse_2BLA",
             "TextRotation": "0",
-            "AutoSize": true,
             "Wildcard1": {
               "TextId": "__SingleUse_5LZL"
             }
@@ -35,21 +34,20 @@
             "Name": "DC_voltage",
             "X": 14,
             "Y": 33,
-            "Width": 279,
+            "Width": 338,
             "Height": 48,
             "TextId": "__SingleUse_YE7J",
             "TextRotation": "0",
-            "AutoSize": true,
             "Wildcard1": {
               "TextId": "__SingleUse_FEU2",
               "UseBuffer": true,
-              "BufferSize": 10
+              "BufferSize": 20
             }
           },
           {
             "Type": "Gauge",
             "Name": "gauge1",
-            "X": 360,
+            "X": 352,
             "Y": 33,
             "Width": 120,
             "Height": 120,
@@ -84,9 +82,9 @@
           {
             "Type": "Box",
             "Name": "box1",
-            "Y": 175,
+            "Y": 202,
             "Width": 480,
-            "Height": 145,
+            "Height": 118,
             "Color": {
               "Red": 132,
               "Green": 151,
@@ -95,42 +93,88 @@
           },
           {
             "Type": "TextArea",
-            "Name": "Phase_shift_1",
-            "X": 14,
-            "Y": 235,
-            "Width": 88,
-            "Height": 20,
+            "Name": "Phase_shift",
+            "X": 25,
+            "Y": 218,
+            "Width": 440,
+            "Height": 15,
             "TextId": "__SingleUse_3FGH",
             "TextRotation": "0",
-            "AutoSize": true,
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Phase_shift_1",
+            "X": 20,
+            "Y": 261,
+            "Width": 60,
+            "Height": 32,
+            "TextId": "__SingleUse_RNFM",
+            "TextRotation": "0",
             "Wildcard1": {
-              "TextId": "__SingleUse_LG0E"
+              "TextId": "__SingleUse_X3MD"
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Phase_shift_2",
+            "X": 110,
+            "Y": 261,
+            "Width": 60,
+            "Height": 32,
+            "TextId": "__SingleUse_6YFR",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "__SingleUse_DQSS"
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Phase_shift_3",
+            "X": 210,
+            "Y": 261,
+            "Width": 60,
+            "Height": 32,
+            "TextId": "__SingleUse_JE01",
+            "TextRotation": "0"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Phase_shift_4",
+            "X": 303,
+            "Y": 261,
+            "Width": 60,
+            "Height": 32,
+            "TextId": "__SingleUse_B8FJ",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "__SingleUse_FZ21"
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Phase_shift_5",
+            "X": 396,
+            "Y": 261,
+            "Width": 60,
+            "Height": 32,
+            "TextId": "__SingleUse_EPG0",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "__SingleUse_5CC1"
             }
           }
         ],
         "Interactions": [
           {
-            "InteractionName": "Change_DC_voltage",
-            "Trigger": {
-              "Type": "TriggerOnEveryTick",
-              "TickCount": 10
-            },
-            "Action": {
-              "Type": "ActionCustom",
-              "FunctionName": "SetVoltageDC"
-            }
-          },
-          {
-            "InteractionName": "Change_Phase_shift_1",
+            "InteractionName": "UpdateValues",
             "Trigger": {
               "Type": "TriggerOnEveryTick",
               "TickCount": 100
             },
             "Action": {
-              "Type": "ActionUpdateValue",
-              "Value": 1,
-              "Duration": 10,
-              "ActionComponent": "gauge1"
+              "Type": "ActionCustom",
+              "FunctionName": "UpdateValues"
             }
           }
         ]

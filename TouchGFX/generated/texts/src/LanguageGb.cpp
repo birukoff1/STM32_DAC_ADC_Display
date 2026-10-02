@@ -10,10 +10,18 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE;
 // Remap all strings
 TEXT_LOCATION_FLASH_PRAGMA
 KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
-    37, // T___SINGLEUSE_LG0E: "0"
-    28, // T___SINGLEUSE_3FGH: "Phase: <>"
-    37, // T___SINGLEUSE_5LZL: "0"
-    37, // T___SINGLEUSE_FEU2: "0"
-    14, // T___SINGLEUSE_YE7J: "DC Voltage: <>"
-    0   // T___SINGLEUSE_2BLA: "AC Voltage: <>"
+    92, // T___SINGLEUSE_5CC1: "0"
+    76, // T___SINGLEUSE_EPG0: "<>"
+    92, // T___SINGLEUSE_FZ21: "0"
+    76, // T___SINGLEUSE_B8FJ: "<>"
+    92, // T___SINGLEUSE_JE01: "0"
+    92, // T___SINGLEUSE_DQSS: "0"
+    76, // T___SINGLEUSE_6YFR: "<>"
+    92, // T___SINGLEUSE_X3MD: "0"
+    76, // T___SINGLEUSE_RNFM: "<>"
+    0,  // T___SINGLEUSE_3FGH: "Phase 1       Phase 2       Phase 3       Phase 4       Phase 5"
+    92, // T___SINGLEUSE_5LZL: "0"
+    92, // T___SINGLEUSE_FEU2: "0"
+    78, // T___SINGLEUSE_YE7J: "DC Voltage: <>"
+    64  // T___SINGLEUSE_2BLA: "AC Voltage: <>"
 };
