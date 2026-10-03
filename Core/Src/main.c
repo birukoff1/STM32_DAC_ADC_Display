@@ -35,7 +35,13 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+typedef enum
+{
+    MODE_SETUP = 0,
+    MODE_RUN
+} SystemMode;
 
+volatile SystemMode systemMode = MODE_SETUP;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -201,42 +207,35 @@ int main(void)
   while (1)
   {
 
-	  // DAC
-	  /*
-	  //V_DAC_phase1 = (i + (Phase_shift_channel1 * N_DAC_voltage) / 360) % N_DAC_voltage;
-	  //V_DAC_phase2 = (i + (Phase_shift_channel2 * N_DAC_voltage) / 360) % N_DAC_voltage;
-	  //V_DAC_phase3 = (i + (Phase_shift_channel3 * N_DAC_voltage) / 360) % N_DAC_voltage;
-	  //V_DAC_phase4 = (i + (Phase_shift_channel4 * N_DAC_voltage) / 360) % N_DAC_voltage;
-	  //V_DAC_phase5 = (i + (Phase_shift_channel5 * N_DAC_voltage) / 360) % N_DAC_voltage;
+	// DAC
+	/*
+	//V_DAC_phase1 = (i + (Phase_shift_channel1 * N_DAC_voltage) / 360) % N_DAC_voltage;
+	//V_DAC_phase2 = (i + (Phase_shift_channel2 * N_DAC_voltage) / 360) % N_DAC_voltage;
+	//V_DAC_phase3 = (i + (Phase_shift_channel3 * N_DAC_voltage) / 360) % N_DAC_voltage;
+	//V_DAC_phase4 = (i + (Phase_shift_channel4 * N_DAC_voltage) / 360) % N_DAC_voltage;
+	//V_DAC_phase5 = (i + (Phase_shift_channel5 * N_DAC_voltage) / 360) % N_DAC_voltage;
 
-	  //DAC8568_Write(V_DAC[V_DAC_phase1], 1);
-	  //DAC8568_Write(V_DAC[V_DAC_phase2], 2);
-	  //DAC8568_Write(V_DAC[V_DAC_phase3], 3);
-	  //DAC8568_Write(V_DAC[V_DAC_phase4], 4);
-	  //DAC8568_Write(V_DAC[V_DAC_phase5], 5);
+	//DAC8568_Write(V_DAC[V_DAC_phase1], 1);
+	//DAC8568_Write(V_DAC[V_DAC_phase2], 2);
+	//DAC8568_Write(V_DAC[V_DAC_phase3], 3);
+	//DAC8568_Write(V_DAC[V_DAC_phase4], 4);
+	//DAC8568_Write(V_DAC[V_DAC_phase5], 5);
 
-	  i++;
-	  if (i >= N_DAC_voltage)
-		  i = 0;
-	  */
+	i++;
+	if (i >= N_DAC_voltage)
+	  i = 0;
+	*/
 
-	  // ADC
-	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET); // CB Low
-	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET); // CB High
-	  usDelay(10);
+	// ADC
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET); // CB Low
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET); // CB High
+	usDelay(10);
 
-
+	touchgfxSignalVSync();
 
     /* USER CODE END WHILE */
 
-	  //i++;
-	  //if (i % 10 == N_DAC_voltage)
-
-	  touchgfxSignalVSync();
-	  MX_TouchGFX_Process();
-
-	  if (i == 1000)
-		  i = 0;
+  MX_TouchGFX_Process();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -289,9 +288,11 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
-// ADC interruption for BUST falling edge
+
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
+
+	// ADC interruption for BUST falling edge
     if (GPIO_Pin == ADC_BUSY_Pin)
     {
         // CS LOW
@@ -311,6 +312,19 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         // CS HIGH
         usDelay(5);
         HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_SET);
+    }
+
+    // Blue button
+    if (GPIO_Pin == BUTTON_Pin)
+    {
+        if (systemMode == MODE_SETUP)
+        {
+            systemMode = MODE_RUN;
+        }
+        else
+        {
+            systemMode = MODE_SETUP;
+        }
     }
 }
 

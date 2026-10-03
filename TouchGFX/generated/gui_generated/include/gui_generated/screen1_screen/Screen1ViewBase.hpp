@@ -9,9 +9,9 @@
 #include <gui/screen1_screen/Screen1Presenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
-#include <touchgfx/widgets/Gauge.hpp>
-#include <touchgfx/widgets/canvas/PainterRGB565.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/widgets/Gauge.hpp>
+#include <touchgfx/widgets/Image.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
@@ -41,8 +41,6 @@ protected:
     touchgfx::Box Background;
     touchgfx::TextAreaWithOneWildcard AC_voltage;
     touchgfx::TextAreaWithOneWildcard DC_voltage;
-    touchgfx::Gauge gauge1;
-    touchgfx::PainterRGB565 gauge1Painter;
     touchgfx::Box box1;
     touchgfx::TextArea Phase_shift;
     touchgfx::TextAreaWithOneWildcard Phase_shift_1;
@@ -50,20 +48,26 @@ protected:
     touchgfx::TextArea Phase_shift_3;
     touchgfx::TextAreaWithOneWildcard Phase_shift_4;
     touchgfx::TextAreaWithOneWildcard Phase_shift_5;
+    touchgfx::Gauge gauge1;
+    touchgfx::Image image1;
 
     /*
      * Wildcard Buffers
      */
+    static const uint16_t AC_VOLTAGE_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar AC_voltageBuffer[AC_VOLTAGE_SIZE];
     static const uint16_t DC_VOLTAGE_SIZE = 20;
     touchgfx::Unicode::UnicodeChar DC_voltageBuffer[DC_VOLTAGE_SIZE];
+    static const uint16_t PHASE_SHIFT_1_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar Phase_shift_1Buffer[PHASE_SHIFT_1_SIZE];
+    static const uint16_t PHASE_SHIFT_2_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar Phase_shift_2Buffer[PHASE_SHIFT_2_SIZE];
+    static const uint16_t PHASE_SHIFT_4_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar Phase_shift_4Buffer[PHASE_SHIFT_4_SIZE];
+    static const uint16_t PHASE_SHIFT_5_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar Phase_shift_5Buffer[PHASE_SHIFT_5_SIZE];
 
 private:
-
-    /*
-     * Canvas Buffer Size
-     */
-    static const uint32_t CANVAS_BUFFER_SIZE = 7200;
-    uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
 
     /*
      * Tick Counter Declarations

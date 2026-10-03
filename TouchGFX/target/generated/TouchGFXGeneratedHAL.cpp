@@ -44,8 +44,8 @@ extern "C" void touchgfxDisplayDriverTransmitBlock(const uint8_t* pixels, uint16
 extern "C" void touchgfxSignalVSync(void);
 
 // Block Allocator for Partial Framebuffer strategy
-static ManyBlockAllocator<2048, /* block size */
-       3, /* number of blocks */
+static ManyBlockAllocator<4096, /* block size */
+       4, /* number of blocks */
        2 /* bytes per pixel */
        > blockAllocator;
 

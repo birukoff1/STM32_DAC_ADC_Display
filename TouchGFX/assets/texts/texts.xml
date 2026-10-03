@@ -5,53 +5,53 @@
   </Languages>
   <Texts>
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_5CC1" Alignment="Left" TypographyId="Default">
+      <Text Id="__SingleUse_5CC1" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">0</Translation>
       </Text>
-      <Text Id="__SingleUse_EPG0" Alignment="Center" TypographyId="Default">
+      <Text Id="__SingleUse_EPG0" Alignment="Center" TypographyId="Large">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_FZ21" Alignment="Left" TypographyId="Default">
+      <Text Id="__SingleUse_FZ21" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">0</Translation>
       </Text>
-      <Text Id="__SingleUse_B8FJ" Alignment="Center" TypographyId="Default">
+      <Text Id="__SingleUse_B8FJ" Alignment="Center" TypographyId="Large">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_JE01" Alignment="Center" TypographyId="Default">
+      <Text Id="__SingleUse_JE01" Alignment="Center" TypographyId="Large">
         <Translation Language="GB">0</Translation>
       </Text>
-      <Text Id="__SingleUse_DQSS" Alignment="Left" TypographyId="Default">
+      <Text Id="__SingleUse_DQSS" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">0</Translation>
       </Text>
-      <Text Id="__SingleUse_6YFR" Alignment="Center" TypographyId="Default">
+      <Text Id="__SingleUse_6YFR" Alignment="Center" TypographyId="Large">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_X3MD" Alignment="Left" TypographyId="Default">
+      <Text Id="__SingleUse_X3MD" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">0</Translation>
       </Text>
-      <Text Id="__SingleUse_RNFM" Alignment="Center" TypographyId="Default">
+      <Text Id="__SingleUse_RNFM" Alignment="Center" TypographyId="Large">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_3FGH" Alignment="Center" TypographyId="Small">
         <Translation Language="GB">Phase 1       Phase 2       Phase 3       Phase 4       Phase 5</Translation>
       </Text>
-      <Text Id="__SingleUse_5LZL" Alignment="Left" TypographyId="Large">
+      <Text Id="AC_voltage" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">0</Translation>
       </Text>
       <Text Id="__SingleUse_FEU2" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">0</Translation>
       </Text>
       <Text Id="__SingleUse_YE7J" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB">DC Voltage: &lt;value&gt;</Translation>
+        <Translation Language="GB">DC: &lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_2BLA" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB">AC Voltage: &lt;value&gt;</Translation>
+        <Translation Language="GB">AC: &lt;value&gt;</Translation>
       </Text>
     </TextGroup>
   </Texts>
   <Typographies>
-    <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters=".,%" WildcardCharacterRanges="0-9,a-z,A-Z" />
-    <Typography Id="Small" Font="verdana.ttf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters=".,%-" WildcardCharacterRanges="0-9,a-z,A-Z" />
+    <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters=".,%-" WildcardCharacterRanges="0-9,a-z,A-Z" />
+    <Typography Id="Small" Font="verdana.ttf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters=".,%-" WildcardCharacterRanges="0-9,a-z,A-Z" />
   </Typographies>
 </TextDatabase>

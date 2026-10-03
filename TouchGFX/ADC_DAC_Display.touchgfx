@@ -3,11 +3,11 @@
     "Screens": [
       {
         "Name": "Screen1",
-        "CanvasBufferSize": 7200,
         "Components": [
           {
             "Type": "Box",
             "Name": "Background",
+            "Y": -1,
             "Width": 480,
             "Height": 320,
             "Color": {
@@ -19,22 +19,24 @@
           {
             "Type": "TextArea",
             "Name": "AC_voltage",
-            "X": 14,
-            "Y": 104,
-            "Width": 338,
-            "Height": 49,
+            "X": 19,
+            "Y": 20,
+            "Width": 221,
+            "Height": 48,
             "TextId": "__SingleUse_2BLA",
             "TextRotation": "0",
             "Wildcard1": {
-              "TextId": "__SingleUse_5LZL"
+              "TextId": "AC_voltage",
+              "UseBuffer": true,
+              "BufferSize": 20
             }
           },
           {
             "Type": "TextArea",
             "Name": "DC_voltage",
-            "X": 14,
-            "Y": 33,
-            "Width": 338,
+            "X": 259,
+            "Y": 20,
+            "Width": 207,
             "Height": 48,
             "TextId": "__SingleUse_YE7J",
             "TextRotation": "0",
@@ -45,46 +47,11 @@
             }
           },
           {
-            "Type": "Gauge",
-            "Name": "gauge1",
-            "X": 352,
-            "Y": 33,
-            "Width": 120,
-            "Height": 120,
-            "FileNameBackground": "__generated\\alternate_theme_images_widgets_gauge_tiny_backgrounds_dark_filled.png",
-            "RotationCenterX": 60.0,
-            "RotationCenterY": 60.0,
-            "StartAngle": -120.0,
-            "EndAngle": 120.0,
-            "RangeMax": 2000.0,
-            "Easing": "Linear",
-            "EasingOption": "In",
-            "FileNameNeedle": "__generated\\alternate_theme_images_widgets_gauge_tiny_needles_rough.png",
-            "NeedleRotationCenterX": 5.0,
-            "NeedleRotationCenterY": 33.0,
-            "NeedleMovingRenderingAlgorithm": "Bilinear Interpolation",
-            "NeedleSteadyRenderingAlgorithm": "Bilinear Interpolation",
-            "UseArc": true,
-            "ArcColor": {
-              "Red": 20,
-              "Green": 151,
-              "Blue": 197
-            },
-            "SetArcPosition": true,
-            "ArcX": 12.0,
-            "ArcY": 12.0,
-            "ArcWidth": 95.0,
-            "ArcHeight": 71.0,
-            "ArcRadius": 50.0,
-            "ArcLineWidth": 49.0,
-            "ArcCapStyle": "Butt"
-          },
-          {
             "Type": "Box",
             "Name": "box1",
-            "Y": 202,
+            "Y": 203,
             "Width": 480,
-            "Height": 118,
+            "Height": 117,
             "Color": {
               "Red": 132,
               "Green": 151,
@@ -94,10 +61,10 @@
           {
             "Type": "TextArea",
             "Name": "Phase_shift",
-            "X": 25,
-            "Y": 218,
+            "X": 26,
+            "Y": 221,
             "Width": 440,
-            "Height": 15,
+            "Height": 18,
             "TextId": "__SingleUse_3FGH",
             "TextRotation": "0",
             "AutoSize": true
@@ -105,64 +72,113 @@
           {
             "Type": "TextArea",
             "Name": "Phase_shift_1",
-            "X": 20,
-            "Y": 261,
-            "Width": 60,
-            "Height": 32,
+            "X": 19,
+            "Y": 251,
+            "Width": 70,
+            "Height": 48,
             "TextId": "__SingleUse_RNFM",
             "TextRotation": "0",
             "Wildcard1": {
-              "TextId": "__SingleUse_X3MD"
+              "TextId": "__SingleUse_X3MD",
+              "UseBuffer": true,
+              "BufferSize": 20
             }
           },
           {
             "Type": "TextArea",
             "Name": "Phase_shift_2",
-            "X": 110,
-            "Y": 261,
-            "Width": 60,
-            "Height": 32,
+            "X": 112,
+            "Y": 251,
+            "Width": 70,
+            "Height": 48,
             "TextId": "__SingleUse_6YFR",
             "TextRotation": "0",
             "Wildcard1": {
-              "TextId": "__SingleUse_DQSS"
+              "TextId": "__SingleUse_DQSS",
+              "UseBuffer": true,
+              "BufferSize": 20
             }
           },
           {
             "Type": "TextArea",
             "Name": "Phase_shift_3",
-            "X": 210,
-            "Y": 261,
-            "Width": 60,
-            "Height": 32,
+            "X": 230,
+            "Y": 251,
+            "Width": 25,
+            "Height": 48,
             "TextId": "__SingleUse_JE01",
-            "TextRotation": "0"
+            "TextRotation": "0",
+            "AutoSize": true
           },
           {
             "Type": "TextArea",
             "Name": "Phase_shift_4",
-            "X": 303,
-            "Y": 261,
-            "Width": 60,
-            "Height": 32,
+            "X": 305,
+            "Y": 251,
+            "Width": 70,
+            "Height": 48,
             "TextId": "__SingleUse_B8FJ",
             "TextRotation": "0",
             "Wildcard1": {
-              "TextId": "__SingleUse_FZ21"
+              "TextId": "__SingleUse_FZ21",
+              "UseBuffer": true,
+              "BufferSize": 20
             }
           },
           {
             "Type": "TextArea",
             "Name": "Phase_shift_5",
-            "X": 396,
-            "Y": 261,
-            "Width": 60,
-            "Height": 32,
+            "X": 402,
+            "Y": 251,
+            "Width": 70,
+            "Height": 48,
             "TextId": "__SingleUse_EPG0",
             "TextRotation": "0",
             "Wildcard1": {
-              "TextId": "__SingleUse_5CC1"
+              "TextId": "__SingleUse_5CC1",
+              "UseBuffer": true,
+              "BufferSize": 20
             }
+          },
+          {
+            "Type": "Gauge",
+            "Name": "gauge1",
+            "X": 26,
+            "Y": 72,
+            "Width": 120,
+            "Height": 120,
+            "FileNameBackground": "__generated\\alternate_theme_images_widgets_gauge_tiny_backgrounds_active_filled.png",
+            "RotationCenterX": 60.0,
+            "RotationCenterY": 60.0,
+            "StartAngle": -119.0,
+            "EndAngle": 122.0,
+            "RangeMax": 100.0,
+            "InitialValue": 20.0,
+            "Easing": "Linear",
+            "EasingOption": "In",
+            "FileNameNeedle": "__generated\\alternate_theme_images_widgets_gauge_tiny_needles_rough.png",
+            "NeedleRotationCenterX": 5.0,
+            "NeedleRotationCenterY": 33.0,
+            "NeedleMovingRenderingAlgorithm": "Nearest-neighbor",
+            "NeedleSteadyRenderingAlgorithm": "Nearest-neighbor",
+            "FileNameArc": "__generated\\alternate_theme_images_widgets_gauge_tiny_fillers_swoop.png",
+            "ArcColor": {
+              "Red": 20,
+              "Green": 151,
+              "Blue": 197
+            },
+            "ArcRadius": 50.0,
+            "ArcLineWidth": 49.0,
+            "ArcCapStyle": "Butt"
+          },
+          {
+            "Type": "Image",
+            "Name": "image1",
+            "X": 178,
+            "Y": 72,
+            "Width": 128,
+            "Height": 128,
+            "RelativeFilename": "Pause.png"
           }
         ],
         "Interactions": [
@@ -175,6 +191,16 @@
             "Action": {
               "Type": "ActionCustom",
               "FunctionName": "UpdateValues"
+            }
+          },
+          {
+            "InteractionName": "GaugeValueUpdate",
+            "Trigger": {
+              "Type": "TriggerOnEveryTick",
+              "TickCount": 100
+            },
+            "Action": {
+              "Type": "ActionNone"
             }
           }
         ]

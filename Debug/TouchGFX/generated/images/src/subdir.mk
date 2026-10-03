@@ -6,15 +6,18 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../TouchGFX/generated/images/src/BitmapDatabase.cpp \
-../TouchGFX/generated/images/src/SVGDatabase.cpp 
+../TouchGFX/generated/images/src/SVGDatabase.cpp \
+../TouchGFX/generated/images/src/image_Pause.cpp 
 
 OBJS += \
 ./TouchGFX/generated/images/src/BitmapDatabase.o \
-./TouchGFX/generated/images/src/SVGDatabase.o 
+./TouchGFX/generated/images/src/SVGDatabase.o \
+./TouchGFX/generated/images/src/image_Pause.o 
 
 CPP_DEPS += \
 ./TouchGFX/generated/images/src/BitmapDatabase.d \
-./TouchGFX/generated/images/src/SVGDatabase.d 
+./TouchGFX/generated/images/src/SVGDatabase.d \
+./TouchGFX/generated/images/src/image_Pause.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -24,7 +27,7 @@ TouchGFX/generated/images/src/%.o TouchGFX/generated/images/src/%.su TouchGFX/ge
 clean: clean-TouchGFX-2f-generated-2f-images-2f-src
 
 clean-TouchGFX-2f-generated-2f-images-2f-src:
-	-$(RM) ./TouchGFX/generated/images/src/BitmapDatabase.cyclo ./TouchGFX/generated/images/src/BitmapDatabase.d ./TouchGFX/generated/images/src/BitmapDatabase.o ./TouchGFX/generated/images/src/BitmapDatabase.su ./TouchGFX/generated/images/src/SVGDatabase.cyclo ./TouchGFX/generated/images/src/SVGDatabase.d ./TouchGFX/generated/images/src/SVGDatabase.o ./TouchGFX/generated/images/src/SVGDatabase.su
+	-$(RM) ./TouchGFX/generated/images/src/BitmapDatabase.cyclo ./TouchGFX/generated/images/src/BitmapDatabase.d ./TouchGFX/generated/images/src/BitmapDatabase.o ./TouchGFX/generated/images/src/BitmapDatabase.su ./TouchGFX/generated/images/src/SVGDatabase.cyclo ./TouchGFX/generated/images/src/SVGDatabase.d ./TouchGFX/generated/images/src/SVGDatabase.o ./TouchGFX/generated/images/src/SVGDatabase.su ./TouchGFX/generated/images/src/image_Pause.cyclo ./TouchGFX/generated/images/src/image_Pause.d ./TouchGFX/generated/images/src/image_Pause.o ./TouchGFX/generated/images/src/image_Pause.su
 
 .PHONY: clean-TouchGFX-2f-generated-2f-images-2f-src
 
