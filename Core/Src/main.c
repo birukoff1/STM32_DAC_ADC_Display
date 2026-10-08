@@ -203,39 +203,41 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  //mainApp();
   while (1)
   {
 
-	// DAC
-	/*
-	//V_DAC_phase1 = (i + (Phase_shift_channel1 * N_DAC_voltage) / 360) % N_DAC_voltage;
-	//V_DAC_phase2 = (i + (Phase_shift_channel2 * N_DAC_voltage) / 360) % N_DAC_voltage;
-	//V_DAC_phase3 = (i + (Phase_shift_channel3 * N_DAC_voltage) / 360) % N_DAC_voltage;
-	//V_DAC_phase4 = (i + (Phase_shift_channel4 * N_DAC_voltage) / 360) % N_DAC_voltage;
-	//V_DAC_phase5 = (i + (Phase_shift_channel5 * N_DAC_voltage) / 360) % N_DAC_voltage;
+	if (systemMode == MODE_SETUP)
+	{
+		// ADC
+		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET); // CB Low
+		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET); // CB High
+		usDelay(10);
 
-	//DAC8568_Write(V_DAC[V_DAC_phase1], 1);
-	//DAC8568_Write(V_DAC[V_DAC_phase2], 2);
-	//DAC8568_Write(V_DAC[V_DAC_phase3], 3);
-	//DAC8568_Write(V_DAC[V_DAC_phase4], 4);
-	//DAC8568_Write(V_DAC[V_DAC_phase5], 5);
+		touchgfxSignalVSync();
+		MX_TouchGFX_Process();
+	}
+	else
+	{
+		// DAC
+		/*
+		//V_DAC_phase1 = (i + (Phase_shift_channel1 * N_DAC_voltage) / 360) % N_DAC_voltage;
+		//V_DAC_phase2 = (i + (Phase_shift_channel2 * N_DAC_voltage) / 360) % N_DAC_voltage;
+		//V_DAC_phase3 = (i + (Phase_shift_channel3 * N_DAC_voltage) / 360) % N_DAC_voltage;
+		//V_DAC_phase4 = (i + (Phase_shift_channel4 * N_DAC_voltage) / 360) % N_DAC_voltage;
+		//V_DAC_phase5 = (i + (Phase_shift_channel5 * N_DAC_voltage) / 360) % N_DAC_voltage;
 
-	i++;
-	if (i >= N_DAC_voltage)
-	  i = 0;
-	*/
+		//DAC8568_Write(V_DAC[V_DAC_phase1], 1);
+		//DAC8568_Write(V_DAC[V_DAC_phase2], 2);
+		//DAC8568_Write(V_DAC[V_DAC_phase3], 3);
+		//DAC8568_Write(V_DAC[V_DAC_phase4], 4);
+		//DAC8568_Write(V_DAC[V_DAC_phase5], 5);
 
-	// ADC
-	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET); // CB Low
-	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET); // CB High
-	usDelay(10);
+		i++;
+		if (i >= N_DAC_voltage)
+		  i = 0;
+		*/
+	}
 
-	touchgfxSignalVSync();
-
-    /* USER CODE END WHILE */
-
-  MX_TouchGFX_Process();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

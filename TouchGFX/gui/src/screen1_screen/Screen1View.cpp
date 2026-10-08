@@ -31,19 +31,19 @@ void Screen1View::UpdateValues()
 	// Phase shifts
 
 	// Phase shift 1
-	touchgfx::Unicode::snprintf(Phase_shift_1Buffer,PHASE_SHIFT_1_SIZE,"%i", 10*(int)V_ADC[2]);
+	touchgfx::Unicode::snprintf(Phase_shift_1Buffer,PHASE_SHIFT_1_SIZE,"%i", (int)(10.0*V_ADC[2]));
 	Phase_shift_1.invalidate();
 
 	// Phase shift 2
-	touchgfx::Unicode::snprintf(Phase_shift_2Buffer,PHASE_SHIFT_2_SIZE,"%i", 10*(int)V_ADC[3]);
+	touchgfx::Unicode::snprintf(Phase_shift_2Buffer,PHASE_SHIFT_2_SIZE,"%i", (int)(10.0*V_ADC[3]));
 	Phase_shift_2.invalidate();
 
 	// Phase shift 4
-	touchgfx::Unicode::snprintf(Phase_shift_4Buffer,PHASE_SHIFT_4_SIZE,"%i", 10*(int)V_ADC[4]);
+	touchgfx::Unicode::snprintf(Phase_shift_4Buffer,PHASE_SHIFT_4_SIZE,"%i", (int)(10.0*V_ADC[4]));
 	Phase_shift_4.invalidate();
 
 	// Phase shift 5
-	touchgfx::Unicode::snprintf(Phase_shift_5Buffer,PHASE_SHIFT_5_SIZE,"%i", 10*(int)V_ADC[5]);
+	touchgfx::Unicode::snprintf(Phase_shift_5Buffer,PHASE_SHIFT_5_SIZE,"%i", (int)(10.0*V_ADC[5]));
 	Phase_shift_5.invalidate();
 
 
