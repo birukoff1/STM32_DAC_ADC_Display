@@ -13,6 +13,8 @@
 #include <touchgfx/widgets/Gauge.hpp>
 #include <touchgfx/widgets/Image.hpp>
 
+#include "main.h"
+
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
 public:
@@ -72,8 +74,10 @@ private:
     /*
      * Tick Counter Declarations
      */
-    static const uint32_t TICK_UPDATEVALUES_INTERVAL = 100;
+    static const uint32_t TICK_UPDATEVALUES_INTERVAL = 10;
     uint32_t frameCountUpdateValuesInterval;
+    static const uint32_t TICK_GAUGEVALUEUPDATE_INTERVAL = 100;
+    uint32_t frameCountGaugeValueUpdateInterval;
 
 };
 

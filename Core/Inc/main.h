@@ -35,6 +35,14 @@ extern "C" {
 #define N_DAC_voltage 30 // Amount of points in one period
 #define N_ADC_channels 8 // Amount of ADC channels
 extern volatile float V_ADC[N_ADC_channels];
+extern uint8_t ShowImage;
+
+typedef enum
+{
+    MODE_SETUP = 0,
+    MODE_RUN
+} SystemMode;
+extern volatile SystemMode systemMode;
 
 /* USER CODE END Includes */
 

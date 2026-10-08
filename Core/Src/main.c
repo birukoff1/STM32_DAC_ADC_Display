@@ -35,12 +35,6 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-typedef enum
-{
-    MODE_SETUP = 0,
-    MODE_RUN
-} SystemMode;
-
 volatile SystemMode systemMode = MODE_SETUP;
 /* USER CODE END PTD */
 
@@ -117,6 +111,11 @@ void DAC8568_Init_SineTable(void)
 
 int16_t adc_data;
 volatile float V_ADC[N_ADC_channels];
+
+
+// Display
+uint8_t ShowImage = 0;
+
 
 // TIM1
 void usDelay(uint16_t useconds)
@@ -218,6 +217,12 @@ int main(void)
 	}
 	else
 	{
+
+		if (ShowImage == 1)
+		{
+			touchgfxSignalVSync();
+			MX_TouchGFX_Process();
+		}
 		// DAC
 		/*
 		//V_DAC_phase1 = (i + (Phase_shift_channel1 * N_DAC_voltage) / 360) % N_DAC_voltage;
@@ -327,6 +332,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         {
             systemMode = MODE_SETUP;
         }
+        ShowImage = 1;
     }
 }
 

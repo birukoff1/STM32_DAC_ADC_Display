@@ -200,7 +200,8 @@
               "TickCount": 100
             },
             "Action": {
-              "Type": "ActionNone"
+              "Type": "ActionShow",
+              "ActionComponent": "image1"
             }
           }
         ]

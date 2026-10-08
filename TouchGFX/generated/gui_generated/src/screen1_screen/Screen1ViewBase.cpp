@@ -7,7 +7,8 @@
 #include <images/BitmapDatabase.hpp>
 
 Screen1ViewBase::Screen1ViewBase() :
-    frameCountUpdateValuesInterval(0)
+    frameCountUpdateValuesInterval(0),
+    frameCountGaugeValueUpdateInterval(0)
 {
     __background.setPosition(0, 0, 480, 320);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -117,5 +118,24 @@ void Screen1ViewBase::handleTickEvent()
         //Call UpdateValues
         UpdateValues();
         frameCountUpdateValuesInterval = 0;
+    }
+
+    gauge1.updateValue(50, 0);
+
+
+    if (ShowImage)
+    {
+		if (systemMode == MODE_SETUP)
+		{
+			image1.setVisible(true);
+			image1.invalidate();
+			ShowImage = 0;
+		}
+		else
+		{
+			image1.setVisible(false);
+			image1.invalidate();
+			ShowImage = 0;
+		}
     }
 }
