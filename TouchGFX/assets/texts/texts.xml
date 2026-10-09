@@ -5,6 +5,12 @@
   </Languages>
   <Texts>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_RAFL" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_7APT" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Idc: &lt;value&gt;</Translation>
+      </Text>
       <Text Id="__SingleUse_5CC1" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">0</Translation>
       </Text>
@@ -42,10 +48,10 @@
         <Translation Language="GB">0</Translation>
       </Text>
       <Text Id="__SingleUse_YE7J" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB">DC: &lt;value&gt;</Translation>
+        <Translation Language="GB">Vdc: &lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_2BLA" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB">AC: &lt;value&gt;</Translation>
+        <Translation Language="GB">Vac: &lt;value&gt;</Translation>
       </Text>
     </TextGroup>
   </Texts>

@@ -41,10 +41,6 @@ volatile SystemMode systemMode = MODE_SETUP;
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-// Defines for SPI1
-//#define N_DAC_voltage 30 // Amount of points in one period
-//#define N_ADC_channels 8 // Amount of ADC channels
-
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -63,17 +59,11 @@ uint32_t i = 0; // Counter
 // DAC
 uint16_t V_DAC[N_DAC_voltage]; // Values of the generator
 
-int Phase_shift_channel1 = 0;
-int Phase_shift_channel2 = 60;
-int Phase_shift_channel3 = 120;
-int Phase_shift_channel4 = 180;
-int Phase_shift_channel5 = 240;
-
-int V_DAC_phase1;
-int V_DAC_phase2;
-int V_DAC_phase3;
-int V_DAC_phase4;
-int V_DAC_phase5;
+volatile float V_AC;
+volatile float V_DC;
+volatile float I_DC;
+int Phase_shift[5]; // 5 channels for the generator
+int V_DAC_phase[5];
 
 void DAC8568_Write(uint16_t value, uint8_t channel)
 {
@@ -102,15 +92,17 @@ void DAC8568_Init_SineTable(void)
     for (int i = 0; i < N_DAC_voltage; i++)
     {
         float x = sinf(2.0f * 3.14159265f * i / N_DAC_voltage);
-        V_DAC[i] = (uint16_t)(32767.5f + 32767.5f * x);
+        V_DAC[i] = (uint16_t)(32767.5f + 32767.5f * x / 10.0f); // 32767.5f - 0 V, 10.0f - maximum output voltage
     }
 }
 
 
 // ADC
 
-int16_t adc_data;
+int16_t ADC_data;
 volatile float V_ADC[N_ADC_channels];
+
+volatile float V_ADC_max = 3.0f;
 
 
 // Display
@@ -179,17 +171,20 @@ int main(void)
   // Starting the timer
   HAL_TIM_Base_Start(&htim1);
 
-  // Initial states for SPI1 (DAC)
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET); // DAC8668_SYNC_High
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET); // DAC8668_CLR_High
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_SET); //DAC8668_LDAC_High
 
+  // Initial states for SPI1 (DAC)
+
+  // Grounding all the output channels
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+  DAC8568_Write(32767.5f, 16); // Channel #16 leads to write to all outputs
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+
+  // Initialization of the voltage table
   DAC8568_Init_SineTable();
 
 
   // Initial states for SPI3 (ADC)
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET); // CA High
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET); // CA High
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET); // CB High
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_SET); // CS Low
 
 
@@ -205,17 +200,30 @@ int main(void)
   while (1)
   {
 
-	if (systemMode == MODE_SETUP)
+	if (systemMode == MODE_SETUP) // Reading the ADC signals and updating the display
 	{
 		// ADC
 		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET); // CB Low
 		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET); // CB High
 		usDelay(10);
 
+		V_AC = 10.0f/V_ADC_max*V_ADC[1];
+
+		V_DC = V_ADC[2];
+		I_DC = V_ADC[3];
+
+		Phase_shift[0] = (int)(180.0f/V_ADC_max/2*(V_ADC[4] - V_ADC_max));
+		Phase_shift[1] = (int)(180.0f/V_ADC_max/2*(V_ADC[5] - V_ADC_max));
+		Phase_shift[2] = (int)(180.0f/V_ADC_max/2*(V_ADC[6] - V_ADC_max));
+		Phase_shift[3] = (int)(180.0f/V_ADC_max/2*(V_ADC[7] - V_ADC_max));
+		Phase_shift[4] = (int)(180.0f/V_ADC_max/2*(V_ADC[0] - V_ADC_max));
+
+
+		// Display
 		touchgfxSignalVSync();
 		MX_TouchGFX_Process();
 	}
-	else
+	else // Generating the voltage
 	{
 
 		if (ShowImage == 1)
@@ -223,24 +231,24 @@ int main(void)
 			touchgfxSignalVSync();
 			MX_TouchGFX_Process();
 		}
-		// DAC
-		/*
-		//V_DAC_phase1 = (i + (Phase_shift_channel1 * N_DAC_voltage) / 360) % N_DAC_voltage;
-		//V_DAC_phase2 = (i + (Phase_shift_channel2 * N_DAC_voltage) / 360) % N_DAC_voltage;
-		//V_DAC_phase3 = (i + (Phase_shift_channel3 * N_DAC_voltage) / 360) % N_DAC_voltage;
-		//V_DAC_phase4 = (i + (Phase_shift_channel4 * N_DAC_voltage) / 360) % N_DAC_voltage;
-		//V_DAC_phase5 = (i + (Phase_shift_channel5 * N_DAC_voltage) / 360) % N_DAC_voltage;
 
-		//DAC8568_Write(V_DAC[V_DAC_phase1], 1);
-		//DAC8568_Write(V_DAC[V_DAC_phase2], 2);
-		//DAC8568_Write(V_DAC[V_DAC_phase3], 3);
-		//DAC8568_Write(V_DAC[V_DAC_phase4], 4);
-		//DAC8568_Write(V_DAC[V_DAC_phase5], 5);
+		// DAC
+		V_DAC_phase[0] = (i + (Phase_shift[0] * N_DAC_voltage) / 360) % N_DAC_voltage;
+		V_DAC_phase[1] = (i + (Phase_shift[1] * N_DAC_voltage) / 360) % N_DAC_voltage;
+		V_DAC_phase[2] = (i + (Phase_shift[2] * N_DAC_voltage) / 360) % N_DAC_voltage;
+		V_DAC_phase[3] = (i + (Phase_shift[3] * N_DAC_voltage) / 360) % N_DAC_voltage;
+		V_DAC_phase[4] = (i + (Phase_shift[4] * N_DAC_voltage) / 360) % N_DAC_voltage;
+
+		DAC8568_Write(V_AC*V_DAC[V_DAC_phase[0]], 2); // Channel B
+		DAC8568_Write(V_AC*V_DAC[V_DAC_phase[1]], 4); // Channel D
+		DAC8568_Write(V_AC*V_DAC[V_DAC_phase[2]], 6); // Channel F
+		DAC8568_Write(V_AC*V_DAC[V_DAC_phase[3]], 8); // Channel H
+		DAC8568_Write(V_AC*V_DAC[V_DAC_phase[4]], 7); // Channel G
 
 		i++;
 		if (i >= N_DAC_voltage)
 		  i = 0;
-		*/
+
 	}
 
     /* USER CODE BEGIN 3 */
@@ -309,11 +317,11 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         for (int i = 0; i < N_ADC_channels; i++)
         {
             HAL_SPI_Receive(&hspi3,
-                            (uint8_t *)&adc_data,
+                            (uint8_t *)&ADC_data,
                             1,
                             HAL_MAX_DELAY);
 
-            V_ADC[i] = (float)adc_data * 5.0f / 32768.0f;
+            V_ADC[i] = (float)ADC_data * 5.0f / 32768.0f;
         }
 
         // CS HIGH

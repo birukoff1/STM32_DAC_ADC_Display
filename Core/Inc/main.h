@@ -34,7 +34,12 @@ extern "C" {
 
 #define N_DAC_voltage 30 // Amount of points in one period
 #define N_ADC_channels 8 // Amount of ADC channels
-extern volatile float V_ADC[N_ADC_channels];
+
+extern volatile float V_AC;
+extern volatile float V_DC;
+extern volatile float I_DC;
+extern int Phase_shift[5];
+
 extern uint8_t ShowImage;
 
 typedef enum

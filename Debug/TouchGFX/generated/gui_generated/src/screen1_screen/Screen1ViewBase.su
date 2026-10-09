@@ -77,17 +77,13 @@
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp:38:7:virtual touchgfx::Image::~Image()	16	static
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/progress_indicators/AbstractProgressIndicator.hpp:37:7:touchgfx::AbstractProgressIndicator::~AbstractProgressIndicator()	16	static
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/progress_indicators/AbstractProgressIndicator.hpp:37:7:virtual touchgfx::AbstractProgressIndicator::~AbstractProgressIndicator()	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextureMapper.hpp:46:7:touchgfx::TextureMapper::~TextureMapper()	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextureMapper.hpp:46:7:virtual touchgfx::TextureMapper::~TextureMapper()	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/CanvasWidget.hpp:33:7:touchgfx::CanvasWidget::~CanvasWidget()	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/CanvasWidget.hpp:33:7:virtual touchgfx::CanvasWidget::~CanvasWidget()	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/Circle.hpp:48:7:touchgfx::Circle::~Circle()	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/Circle.hpp:48:7:virtual touchgfx::Circle::~Circle()	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Gauge.hpp:35:7:touchgfx::Gauge::~Gauge()	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Gauge.hpp:35:7:virtual touchgfx::Gauge::~Gauge()	16	static
-../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:9:1:Screen1ViewBase::Screen1ViewBase()	416	static
-../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:101:1:Screen1ViewBase::~Screen1ViewBase()	16	static
-../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:101:1:virtual Screen1ViewBase::~Screen1ViewBase()	16	static
-../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:106:6:virtual void Screen1ViewBase::setupScreen()	16	static
-../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:111:6:virtual void Screen1ViewBase::handleTickEvent()	16	static
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/progress_indicators/AbstractDirectionProgress.hpp:29:7:touchgfx::AbstractDirectionProgress::~AbstractDirectionProgress()	16	static
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/progress_indicators/AbstractDirectionProgress.hpp:29:7:virtual touchgfx::AbstractDirectionProgress::~AbstractDirectionProgress()	16	static
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/progress_indicators/BoxProgress.hpp:32:7:touchgfx::BoxProgress::~BoxProgress()	16	static
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/progress_indicators/BoxProgress.hpp:32:7:virtual touchgfx::BoxProgress::~BoxProgress()	16	static
+../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:9:1:Screen1ViewBase::Screen1ViewBase()	488	static
+../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:124:1:Screen1ViewBase::~Screen1ViewBase()	16	static
+../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:124:1:virtual Screen1ViewBase::~Screen1ViewBase()	16	static
+../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:129:6:virtual void Screen1ViewBase::setupScreen()	16	static
+../TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp:134:6:virtual void Screen1ViewBase::handleTickEvent()	16	static
 ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:39:5:touchgfx::View<T>::View() [with T = Screen1Presenter]	16	static

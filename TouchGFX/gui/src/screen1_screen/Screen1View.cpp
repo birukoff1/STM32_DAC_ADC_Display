@@ -1,4 +1,5 @@
 #include <gui/screen1_screen/Screen1View.hpp>
+#include <touchgfx/Color.hpp>
 
 Screen1View::Screen1View()
 {
@@ -19,32 +20,93 @@ void Screen1View::tearDownScreen()
 void Screen1View::UpdateValues()
 {
 	// Voltages
-	touchgfx::Unicode::snprintfFloat(AC_voltageBuffer,AC_VOLTAGE_SIZE,"%.2f", V_ADC[0] );
-	AC_voltage.invalidate();
-	//gauge3.updateValue(50, 0);
 
-	touchgfx::Unicode::snprintfFloat(DC_voltageBuffer,DC_VOLTAGE_SIZE,"%.2f", V_ADC[1] );
+	// AC voltage
+	touchgfx::Unicode::snprintfFloat(AC_voltageBuffer,AC_VOLTAGE_SIZE,"%.2f", V_AC);
+	AC_voltage.invalidate();
+
+	boxAC_voltage.setValue(V_AC);
+	if (V_AC > 8.0f)
+	{
+		boxAC_voltage.setColor(touchgfx::Color::getColorFromRGB(200, 15, 60));
+	}
+	else
+	{
+		boxAC_voltage.setColor(touchgfx::Color::getColorFromRGB(0, 240, 255));
+	}
+	boxAC_voltage.invalidate();
+
+	// DC voltage
+	touchgfx::Unicode::snprintfFloat(DC_voltageBuffer,DC_VOLTAGE_SIZE,"%.2f", V_DC);
 	DC_voltage.invalidate();
-	//gauge2.updateValue((int)10*V_ADC[1], 1);
+
+    boxDC_voltage.setValue(V_DC);
+	if (V_DC > 700.0f)
+	{
+		boxDC_voltage.setColor(touchgfx::Color::getColorFromRGB(200, 15, 60));
+	}
+	else
+	{
+		boxDC_voltage.setColor(touchgfx::Color::getColorFromRGB(0, 240, 255));
+	}
+	boxDC_voltage.invalidate();
+
+	// DC current
+	touchgfx::Unicode::snprintfFloat(DC_currentBuffer,DC_CURRENT_SIZE,"%.2f", I_DC);
+	DC_current.invalidate();
+
+	boxDC_current.setValue(I_DC);
+	if (I_DC > 120.0f)
+	{
+		boxDC_current.setColor(touchgfx::Color::getColorFromRGB(200, 15, 60));
+	}
+	else
+	{
+		boxDC_current.setColor(touchgfx::Color::getColorFromRGB(0, 240, 255));
+	}
+	boxDC_current.invalidate();
 
 
 	// Phase shifts
 
 	// Phase shift 1
-	touchgfx::Unicode::snprintf(Phase_shift_1Buffer,PHASE_SHIFT_1_SIZE,"%i", (int)(10.0*V_ADC[2]));
+	touchgfx::Unicode::snprintf(Phase_shift_1Buffer,PHASE_SHIFT_1_SIZE,"%i", Phase_shift[0]);
 	Phase_shift_1.invalidate();
 
 	// Phase shift 2
-	touchgfx::Unicode::snprintf(Phase_shift_2Buffer,PHASE_SHIFT_2_SIZE,"%i", (int)(10.0*V_ADC[3]));
+	touchgfx::Unicode::snprintf(Phase_shift_2Buffer,PHASE_SHIFT_2_SIZE,"%i", Phase_shift[1]);
 	Phase_shift_2.invalidate();
 
 	// Phase shift 4
-	touchgfx::Unicode::snprintf(Phase_shift_4Buffer,PHASE_SHIFT_4_SIZE,"%i", (int)(10.0*V_ADC[4]));
+	touchgfx::Unicode::snprintf(Phase_shift_4Buffer,PHASE_SHIFT_4_SIZE,"%i", Phase_shift[3]);
 	Phase_shift_4.invalidate();
 
 	// Phase shift 5
-	touchgfx::Unicode::snprintf(Phase_shift_5Buffer,PHASE_SHIFT_5_SIZE,"%i", (int)(10.0*V_ADC[5]));
+	touchgfx::Unicode::snprintf(Phase_shift_5Buffer,PHASE_SHIFT_5_SIZE,"%i", Phase_shift[4]);
 	Phase_shift_5.invalidate();
+
+	/*
+
+	to Screen1ViewBase.hpp
+	#include <main.h>
+
+	to Screen1ViewBase.cpp
+	if (ShowImage)
+    {
+		if (systemMode == MODE_SETUP)
+		{
+			image1.setVisible(true);
+			image1.invalidate();
+			ShowImage = 0;
+		}
+		else
+		{
+			image1.setVisible(false);
+			image1.invalidate();
+			ShowImage = 0;
+		}
+    }
+	 */
 
 
 }

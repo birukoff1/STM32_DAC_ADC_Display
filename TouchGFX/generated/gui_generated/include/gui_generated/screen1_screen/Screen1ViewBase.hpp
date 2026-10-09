@@ -9,11 +9,11 @@
 #include <gui/screen1_screen/Screen1Presenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/containers/progress_indicators/BoxProgress.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
-#include <touchgfx/widgets/Gauge.hpp>
 #include <touchgfx/widgets/Image.hpp>
 
-#include "main.h"
+#include <main.h>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
@@ -42,15 +42,18 @@ protected:
     touchgfx::Box __background;
     touchgfx::Box Background;
     touchgfx::TextAreaWithOneWildcard AC_voltage;
+    touchgfx::BoxProgress boxAC_voltage;
     touchgfx::TextAreaWithOneWildcard DC_voltage;
+    touchgfx::BoxProgress boxDC_voltage;
+    touchgfx::TextAreaWithOneWildcard DC_current;
+    touchgfx::BoxProgress boxDC_current;
     touchgfx::Box box1;
-    touchgfx::TextArea Phase_shift;
+    touchgfx::TextArea Phase_shift_head;
     touchgfx::TextAreaWithOneWildcard Phase_shift_1;
     touchgfx::TextAreaWithOneWildcard Phase_shift_2;
     touchgfx::TextArea Phase_shift_3;
     touchgfx::TextAreaWithOneWildcard Phase_shift_4;
     touchgfx::TextAreaWithOneWildcard Phase_shift_5;
-    touchgfx::Gauge gauge1;
     touchgfx::Image image1;
 
     /*
@@ -60,6 +63,8 @@ protected:
     touchgfx::Unicode::UnicodeChar AC_voltageBuffer[AC_VOLTAGE_SIZE];
     static const uint16_t DC_VOLTAGE_SIZE = 20;
     touchgfx::Unicode::UnicodeChar DC_voltageBuffer[DC_VOLTAGE_SIZE];
+    static const uint16_t DC_CURRENT_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar DC_currentBuffer[DC_CURRENT_SIZE];
     static const uint16_t PHASE_SHIFT_1_SIZE = 20;
     touchgfx::Unicode::UnicodeChar Phase_shift_1Buffer[PHASE_SHIFT_1_SIZE];
     static const uint16_t PHASE_SHIFT_2_SIZE = 20;
@@ -76,8 +81,6 @@ private:
      */
     static const uint32_t TICK_UPDATEVALUES_INTERVAL = 10;
     uint32_t frameCountUpdateValuesInterval;
-    static const uint32_t TICK_GAUGEVALUEUPDATE_INTERVAL = 100;
-    uint32_t frameCountGaugeValueUpdateInterval;
 
 };
 

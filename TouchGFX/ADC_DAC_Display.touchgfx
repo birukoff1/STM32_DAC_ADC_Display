@@ -19,9 +19,9 @@
           {
             "Type": "TextArea",
             "Name": "AC_voltage",
-            "X": 19,
-            "Y": 20,
-            "Width": 221,
+            "X": 20,
+            "Y": 10,
+            "Width": 250,
             "Height": 48,
             "TextId": "__SingleUse_2BLA",
             "TextRotation": "0",
@@ -32,11 +32,29 @@
             }
           },
           {
+            "Type": "BoxProgress",
+            "Name": "boxAC_voltage",
+            "X": 260,
+            "Y": 25,
+            "Width": 200,
+            "Height": 18,
+            "Color": {
+              "Green": 240,
+              "Blue": 255
+            },
+            "Direction": "Right",
+            "FileNameBackground": "__generated\\alternate_theme_images_widgets_boxprogress_thick_small.png",
+            "IndicatorPositionWidth": 200,
+            "IndicatorPositionHeight": 18,
+            "ProgressRangeMax": 10,
+            "ProgressInitialValue": 1
+          },
+          {
             "Type": "TextArea",
             "Name": "DC_voltage",
-            "X": 259,
-            "Y": 20,
-            "Width": 207,
+            "X": 20,
+            "Y": 80,
+            "Width": 250,
             "Height": 48,
             "TextId": "__SingleUse_YE7J",
             "TextRotation": "0",
@@ -45,6 +63,56 @@
               "UseBuffer": true,
               "BufferSize": 20
             }
+          },
+          {
+            "Type": "BoxProgress",
+            "Name": "boxDC_voltage",
+            "X": 260,
+            "Y": 95,
+            "Width": 200,
+            "Height": 18,
+            "Color": {
+              "Green": 240,
+              "Blue": 255
+            },
+            "Direction": "Right",
+            "FileNameBackground": "__generated\\alternate_theme_images_widgets_boxprogress_thick_small.png",
+            "IndicatorPositionWidth": 200,
+            "IndicatorPositionHeight": 18,
+            "ProgressRangeMax": 2000
+          },
+          {
+            "Type": "TextArea",
+            "Name": "DC_current",
+            "X": 28,
+            "Y": 150,
+            "Width": 250,
+            "Height": 48,
+            "TextId": "__SingleUse_7APT",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "__SingleUse_RAFL",
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
+          },
+          {
+            "Type": "BoxProgress",
+            "Name": "boxDC_current",
+            "X": 260,
+            "Y": 165,
+            "Width": 200,
+            "Height": 18,
+            "Color": {
+              "Green": 240,
+              "Blue": 255
+            },
+            "Direction": "Right",
+            "FileNameBackground": "__generated\\alternate_theme_images_widgets_boxprogress_thick_small.png",
+            "IndicatorPositionWidth": 200,
+            "IndicatorPositionHeight": 18,
+            "ProgressRangeMax": 100,
+            "ProgressInitialValue": 50
           },
           {
             "Type": "Box",
@@ -60,7 +128,7 @@
           },
           {
             "Type": "TextArea",
-            "Name": "Phase_shift",
+            "Name": "Phase_shift_head",
             "X": 26,
             "Y": 221,
             "Width": 440,
@@ -141,44 +209,12 @@
             }
           },
           {
-            "Type": "Gauge",
-            "Name": "gauge1",
-            "X": 26,
-            "Y": 72,
-            "Width": 120,
-            "Height": 120,
-            "FileNameBackground": "__generated\\alternate_theme_images_widgets_gauge_tiny_backgrounds_active_filled.png",
-            "RotationCenterX": 60.0,
-            "RotationCenterY": 60.0,
-            "StartAngle": -119.0,
-            "EndAngle": 122.0,
-            "RangeMax": 100.0,
-            "InitialValue": 20.0,
-            "Easing": "Linear",
-            "EasingOption": "In",
-            "FileNameNeedle": "__generated\\alternate_theme_images_widgets_gauge_tiny_needles_rough.png",
-            "NeedleRotationCenterX": 5.0,
-            "NeedleRotationCenterY": 33.0,
-            "NeedleMovingRenderingAlgorithm": "Nearest-neighbor",
-            "NeedleSteadyRenderingAlgorithm": "Nearest-neighbor",
-            "FileNameArc": "__generated\\alternate_theme_images_widgets_gauge_tiny_fillers_swoop.png",
-            "ArcColor": {
-              "Red": 20,
-              "Green": 151,
-              "Blue": 197
-            },
-            "ArcRadius": 50.0,
-            "ArcLineWidth": 49.0,
-            "ArcCapStyle": "Butt"
-          },
-          {
             "Type": "Image",
             "Name": "image1",
-            "X": 178,
-            "Y": 72,
-            "Width": 128,
-            "Height": 128,
-            "RelativeFilename": "Pause.png"
+            "X": 444,
+            "Width": 36,
+            "Height": 36,
+            "RelativeFilename": "__generated\\alternate_theme_images_widgets_radiobutton_radio_medium_round_on_active.png"
           }
         ],
         "Interactions": [
@@ -186,22 +222,11 @@
             "InteractionName": "UpdateValues",
             "Trigger": {
               "Type": "TriggerOnEveryTick",
-              "TickCount": 100
+              "TickCount": 10
             },
             "Action": {
               "Type": "ActionCustom",
               "FunctionName": "UpdateValues"
-            }
-          },
-          {
-            "InteractionName": "GaugeValueUpdate",
-            "Trigger": {
-              "Type": "TriggerOnEveryTick",
-              "TickCount": 100
-            },
-            "Action": {
-              "Type": "ActionShow",
-              "ActionComponent": "image1"
             }
           }
         ]

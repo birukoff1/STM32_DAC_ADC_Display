@@ -7,8 +7,7 @@
 #include <images/BitmapDatabase.hpp>
 
 Screen1ViewBase::Screen1ViewBase() :
-    frameCountUpdateValuesInterval(0),
-    frameCountGaugeValueUpdateInterval(0)
+    frameCountUpdateValuesInterval(0)
 {
     __background.setPosition(0, 0, 480, 320);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -18,7 +17,7 @@ Screen1ViewBase::Screen1ViewBase() :
     Background.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     add(Background);
 
-    AC_voltage.setPosition(19, 20, 221, 48);
+    AC_voltage.setPosition(20, 10, 250, 48);
     AC_voltage.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     AC_voltage.setLinespacing(0);
     Unicode::snprintf(AC_voltageBuffer, AC_VOLTAGE_SIZE, "%s", touchgfx::TypedText(T_AC_VOLTAGE).getText());
@@ -26,7 +25,16 @@ Screen1ViewBase::Screen1ViewBase() :
     AC_voltage.setTypedText(touchgfx::TypedText(T___SINGLEUSE_2BLA));
     add(AC_voltage);
 
-    DC_voltage.setPosition(259, 20, 207, 48);
+    boxAC_voltage.setXY(260, 25);
+    boxAC_voltage.setProgressIndicatorPosition(0, 0, 200, 18);
+    boxAC_voltage.setRange(0, 10);
+    boxAC_voltage.setDirection(touchgfx::AbstractDirectionProgress::RIGHT);
+    boxAC_voltage.setBackground(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BOXPROGRESS_THICK_SMALL_ID));
+    boxAC_voltage.setColor(touchgfx::Color::getColorFromRGB(0, 240, 255));
+    boxAC_voltage.setValue(1);
+    add(boxAC_voltage);
+
+    DC_voltage.setPosition(20, 80, 250, 48);
     DC_voltage.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     DC_voltage.setLinespacing(0);
     Unicode::snprintf(DC_voltageBuffer, DC_VOLTAGE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_FEU2).getText());
@@ -34,15 +42,41 @@ Screen1ViewBase::Screen1ViewBase() :
     DC_voltage.setTypedText(touchgfx::TypedText(T___SINGLEUSE_YE7J));
     add(DC_voltage);
 
+    boxDC_voltage.setXY(260, 95);
+    boxDC_voltage.setProgressIndicatorPosition(0, 0, 200, 18);
+    boxDC_voltage.setRange(0, 2000);
+    boxDC_voltage.setDirection(touchgfx::AbstractDirectionProgress::RIGHT);
+    boxDC_voltage.setBackground(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BOXPROGRESS_THICK_SMALL_ID));
+    boxDC_voltage.setColor(touchgfx::Color::getColorFromRGB(0, 240, 255));
+    boxDC_voltage.setValue(0);
+    add(boxDC_voltage);
+
+    DC_current.setPosition(28, 150, 250, 48);
+    DC_current.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    DC_current.setLinespacing(0);
+    Unicode::snprintf(DC_currentBuffer, DC_CURRENT_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_RAFL).getText());
+    DC_current.setWildcard(DC_currentBuffer);
+    DC_current.setTypedText(touchgfx::TypedText(T___SINGLEUSE_7APT));
+    add(DC_current);
+
+    boxDC_current.setXY(260, 165);
+    boxDC_current.setProgressIndicatorPosition(0, 0, 200, 18);
+    boxDC_current.setRange(0, 100);
+    boxDC_current.setDirection(touchgfx::AbstractDirectionProgress::RIGHT);
+    boxDC_current.setBackground(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BOXPROGRESS_THICK_SMALL_ID));
+    boxDC_current.setColor(touchgfx::Color::getColorFromRGB(0, 240, 255));
+    boxDC_current.setValue(50);
+    add(boxDC_current);
+
     box1.setPosition(0, 203, 480, 117);
     box1.setColor(touchgfx::Color::getColorFromRGB(132, 151, 181));
     add(box1);
 
-    Phase_shift.setXY(26, 221);
-    Phase_shift.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    Phase_shift.setLinespacing(0);
-    Phase_shift.setTypedText(touchgfx::TypedText(T___SINGLEUSE_3FGH));
-    add(Phase_shift);
+    Phase_shift_head.setXY(26, 221);
+    Phase_shift_head.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    Phase_shift_head.setLinespacing(0);
+    Phase_shift_head.setTypedText(touchgfx::TypedText(T___SINGLEUSE_3FGH));
+    add(Phase_shift_head);
 
     Phase_shift_1.setPosition(19, 251, 70, 48);
     Phase_shift_1.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -82,19 +116,8 @@ Screen1ViewBase::Screen1ViewBase() :
     Phase_shift_5.setTypedText(touchgfx::TypedText(T___SINGLEUSE_EPG0));
     add(Phase_shift_5);
 
-    gauge1.setBackground(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_GAUGE_TINY_BACKGROUNDS_ACTIVE_FILLED_ID));
-    gauge1.setPosition(26, 72, 120, 120);
-    gauge1.setCenter(60, 60);
-    gauge1.setStartEndAngle(-119, 122);
-    gauge1.setRange(0, 100);
-    gauge1.setValue(20);
-    gauge1.setNeedle(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_GAUGE_TINY_NEEDLES_ROUGH_ID, 5, 33);
-    gauge1.setMovingNeedleRenderingAlgorithm(touchgfx::TextureMapper::NEAREST_NEIGHBOR);
-    gauge1.setSteadyNeedleRenderingAlgorithm(touchgfx::TextureMapper::NEAREST_NEIGHBOR);
-    add(gauge1);
-
-    image1.setXY(178, 72);
-    image1.setBitmap(touchgfx::Bitmap(BITMAP_PAUSE_ID));
+    image1.setXY(444, 0);
+    image1.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_RADIOBUTTON_RADIO_MEDIUM_ROUND_ON_ACTIVE_ID));
     add(image1);
 }
 
@@ -120,10 +143,7 @@ void Screen1ViewBase::handleTickEvent()
         frameCountUpdateValuesInterval = 0;
     }
 
-    gauge1.updateValue(50, 0);
-
-
-    if (ShowImage)
+	if (ShowImage)
     {
 		if (systemMode == MODE_SETUP)
 		{
