@@ -7,7 +7,6 @@
           {
             "Type": "Box",
             "Name": "Background",
-            "Y": -1,
             "Width": 480,
             "Height": 320,
             "Color": {
@@ -18,24 +17,24 @@
           },
           {
             "Type": "TextArea",
-            "Name": "AC_voltage",
-            "X": 20,
-            "Y": 10,
-            "Width": 250,
+            "Name": "DC_current",
+            "X": 28,
+            "Y": 145,
+            "Width": 232,
             "Height": 48,
-            "TextId": "__SingleUse_2BLA",
+            "TextId": "__SingleUse_7APT",
             "TextRotation": "0",
             "Wildcard1": {
-              "TextId": "AC_voltage",
+              "TextId": "__SingleUse_RAFL",
               "UseBuffer": true,
               "BufferSize": 20
             }
           },
           {
             "Type": "BoxProgress",
-            "Name": "boxAC_voltage",
+            "Name": "boxDC_current",
             "X": 260,
-            "Y": 25,
+            "Y": 160,
             "Width": 200,
             "Height": 18,
             "Color": {
@@ -46,15 +45,14 @@
             "FileNameBackground": "__generated\\alternate_theme_images_widgets_boxprogress_thick_small.png",
             "IndicatorPositionWidth": 200,
             "IndicatorPositionHeight": 18,
-            "ProgressRangeMax": 10,
-            "ProgressInitialValue": 1
+            "ProgressRangeMax": 3000
           },
           {
             "Type": "TextArea",
             "Name": "DC_voltage",
             "X": 20,
-            "Y": 80,
-            "Width": 250,
+            "Y": 97,
+            "Width": 240,
             "Height": 48,
             "TextId": "__SingleUse_YE7J",
             "TextRotation": "0",
@@ -68,7 +66,7 @@
             "Type": "BoxProgress",
             "Name": "boxDC_voltage",
             "X": 260,
-            "Y": 95,
+            "Y": 112,
             "Width": 200,
             "Height": 18,
             "Color": {
@@ -83,24 +81,24 @@
           },
           {
             "Type": "TextArea",
-            "Name": "DC_current",
-            "X": 28,
-            "Y": 150,
-            "Width": 250,
+            "Name": "Freq",
+            "X": 77,
+            "Y": 49,
+            "Width": 183,
             "Height": 48,
-            "TextId": "__SingleUse_7APT",
+            "TextId": "__SingleUse_0RII",
             "TextRotation": "0",
             "Wildcard1": {
-              "TextId": "__SingleUse_RAFL",
+              "TextId": "__SingleUse_5MVG",
               "UseBuffer": true,
               "BufferSize": 20
             }
           },
           {
             "Type": "BoxProgress",
-            "Name": "boxDC_current",
+            "Name": "boxFreq",
             "X": 260,
-            "Y": 165,
+            "Y": 64,
             "Width": 200,
             "Height": 18,
             "Color": {
@@ -111,15 +109,48 @@
             "FileNameBackground": "__generated\\alternate_theme_images_widgets_boxprogress_thick_small.png",
             "IndicatorPositionWidth": 200,
             "IndicatorPositionHeight": 18,
-            "ProgressRangeMax": 100,
-            "ProgressInitialValue": 50
+            "ProgressRangeMin": 100,
+            "ProgressRangeMax": 1000,
+            "ProgressInitialValue": 1000
+          },
+          {
+            "Type": "TextArea",
+            "Name": "AC_voltage",
+            "X": 20,
+            "Y": 1,
+            "Width": 240,
+            "Height": 48,
+            "TextId": "__SingleUse_2BLA",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "AC_voltage",
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
+          },
+          {
+            "Type": "BoxProgress",
+            "Name": "boxAC_voltage",
+            "X": 260,
+            "Y": 16,
+            "Width": 200,
+            "Height": 18,
+            "Color": {
+              "Green": 240,
+              "Blue": 255
+            },
+            "Direction": "Right",
+            "FileNameBackground": "__generated\\alternate_theme_images_widgets_boxprogress_thick_small.png",
+            "IndicatorPositionWidth": 200,
+            "IndicatorPositionHeight": 18,
+            "ProgressRangeMax": 10
           },
           {
             "Type": "Box",
             "Name": "box1",
-            "Y": 203,
+            "Y": 193,
             "Width": 480,
-            "Height": 117,
+            "Height": 127,
             "Color": {
               "Red": 132,
               "Green": 151,
@@ -129,8 +160,8 @@
           {
             "Type": "TextArea",
             "Name": "Phase_shift_head",
-            "X": 26,
-            "Y": 221,
+            "X": 20,
+            "Y": 206,
             "Width": 440,
             "Height": 18,
             "TextId": "__SingleUse_3FGH",
@@ -140,9 +171,9 @@
           {
             "Type": "TextArea",
             "Name": "Phase_shift_1",
-            "X": 19,
-            "Y": 251,
-            "Width": 70,
+            "X": 7,
+            "Y": 224,
+            "Width": 90,
             "Height": 48,
             "TextId": "__SingleUse_RNFM",
             "TextRotation": "0",
@@ -155,9 +186,9 @@
           {
             "Type": "TextArea",
             "Name": "Phase_shift_2",
-            "X": 112,
-            "Y": 251,
-            "Width": 70,
+            "X": 99,
+            "Y": 224,
+            "Width": 90,
             "Height": 48,
             "TextId": "__SingleUse_6YFR",
             "TextRotation": "0",
@@ -170,8 +201,8 @@
           {
             "Type": "TextArea",
             "Name": "Phase_shift_3",
-            "X": 230,
-            "Y": 251,
+            "X": 228,
+            "Y": 224,
             "Width": 25,
             "Height": 48,
             "TextId": "__SingleUse_JE01",
@@ -181,9 +212,9 @@
           {
             "Type": "TextArea",
             "Name": "Phase_shift_4",
-            "X": 305,
-            "Y": 251,
-            "Width": 70,
+            "X": 288,
+            "Y": 224,
+            "Width": 90,
             "Height": 48,
             "TextId": "__SingleUse_B8FJ",
             "TextRotation": "0",
@@ -196,9 +227,9 @@
           {
             "Type": "TextArea",
             "Name": "Phase_shift_5",
-            "X": 402,
-            "Y": 251,
-            "Width": 70,
+            "X": 384,
+            "Y": 224,
+            "Width": 90,
             "Height": 48,
             "TextId": "__SingleUse_EPG0",
             "TextRotation": "0",
@@ -212,6 +243,7 @@
             "Type": "Image",
             "Name": "image1",
             "X": 444,
+            "Y": 1,
             "Width": 36,
             "Height": 36,
             "RelativeFilename": "__generated\\alternate_theme_images_widgets_radiobutton_radio_medium_round_on_active.png"

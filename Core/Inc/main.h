@@ -36,8 +36,11 @@ extern "C" {
 #define N_ADC_channels 8 // Amount of ADC channels
 
 extern volatile float V_AC;
-extern volatile float V_DC;
-extern volatile float I_DC;
+extern int Frequency;
+
+extern int V_DC;
+extern int I_DC;
+
 extern int Phase_shift[5];
 
 extern uint8_t ShowImage;
@@ -98,10 +101,6 @@ void Error_Handler(void);
 #define SPI1_MOSI_GPIO_Port GPIOA
 #define SPI1_State_Pin GPIO_PIN_5
 #define SPI1_State_GPIO_Port GPIOC
-#define SPI1_CLR_Pin GPIO_PIN_0
-#define SPI1_CLR_GPIO_Port GPIOB
-#define SPI1_LDAC_Pin GPIO_PIN_1
-#define SPI1_LDAC_GPIO_Port GPIOB
 #define BOOT1_Pin GPIO_PIN_2
 #define BOOT1_GPIO_Port GPIOB
 #define CLK_IN_Pin GPIO_PIN_10

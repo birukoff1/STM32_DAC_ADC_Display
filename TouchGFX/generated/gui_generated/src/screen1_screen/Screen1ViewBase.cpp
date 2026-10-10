@@ -13,28 +13,28 @@ Screen1ViewBase::Screen1ViewBase() :
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    Background.setPosition(0, -1, 480, 320);
+    Background.setPosition(0, 0, 480, 304);
     Background.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     add(Background);
 
-    AC_voltage.setPosition(20, 10, 250, 48);
-    AC_voltage.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    AC_voltage.setLinespacing(0);
-    Unicode::snprintf(AC_voltageBuffer, AC_VOLTAGE_SIZE, "%s", touchgfx::TypedText(T_AC_VOLTAGE).getText());
-    AC_voltage.setWildcard(AC_voltageBuffer);
-    AC_voltage.setTypedText(touchgfx::TypedText(T___SINGLEUSE_2BLA));
-    add(AC_voltage);
+    DC_current.setPosition(28, 145, 232, 48);
+    DC_current.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    DC_current.setLinespacing(0);
+    Unicode::snprintf(DC_currentBuffer, DC_CURRENT_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_RAFL).getText());
+    DC_current.setWildcard(DC_currentBuffer);
+    DC_current.setTypedText(touchgfx::TypedText(T___SINGLEUSE_7APT));
+    add(DC_current);
 
-    boxAC_voltage.setXY(260, 25);
-    boxAC_voltage.setProgressIndicatorPosition(0, 0, 200, 18);
-    boxAC_voltage.setRange(0, 10);
-    boxAC_voltage.setDirection(touchgfx::AbstractDirectionProgress::RIGHT);
-    boxAC_voltage.setBackground(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BOXPROGRESS_THICK_SMALL_ID));
-    boxAC_voltage.setColor(touchgfx::Color::getColorFromRGB(0, 240, 255));
-    boxAC_voltage.setValue(1);
-    add(boxAC_voltage);
+    boxDC_current.setXY(260, 160);
+    boxDC_current.setProgressIndicatorPosition(0, 0, 200, 18);
+    boxDC_current.setRange(0, 3000);
+    boxDC_current.setDirection(touchgfx::AbstractDirectionProgress::RIGHT);
+    boxDC_current.setBackground(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BOXPROGRESS_THICK_SMALL_ID));
+    boxDC_current.setColor(touchgfx::Color::getColorFromRGB(0, 240, 255));
+    boxDC_current.setValue(0);
+    add(boxDC_current);
 
-    DC_voltage.setPosition(20, 80, 250, 48);
+    DC_voltage.setPosition(20, 97, 240, 48);
     DC_voltage.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     DC_voltage.setLinespacing(0);
     Unicode::snprintf(DC_voltageBuffer, DC_VOLTAGE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_FEU2).getText());
@@ -42,7 +42,7 @@ Screen1ViewBase::Screen1ViewBase() :
     DC_voltage.setTypedText(touchgfx::TypedText(T___SINGLEUSE_YE7J));
     add(DC_voltage);
 
-    boxDC_voltage.setXY(260, 95);
+    boxDC_voltage.setXY(260, 112);
     boxDC_voltage.setProgressIndicatorPosition(0, 0, 200, 18);
     boxDC_voltage.setRange(0, 2000);
     boxDC_voltage.setDirection(touchgfx::AbstractDirectionProgress::RIGHT);
@@ -51,34 +51,51 @@ Screen1ViewBase::Screen1ViewBase() :
     boxDC_voltage.setValue(0);
     add(boxDC_voltage);
 
-    DC_current.setPosition(28, 150, 250, 48);
-    DC_current.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    DC_current.setLinespacing(0);
-    Unicode::snprintf(DC_currentBuffer, DC_CURRENT_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_RAFL).getText());
-    DC_current.setWildcard(DC_currentBuffer);
-    DC_current.setTypedText(touchgfx::TypedText(T___SINGLEUSE_7APT));
-    add(DC_current);
+    Freq.setPosition(77, 49, 183, 48);
+    Freq.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    Freq.setLinespacing(0);
+    Unicode::snprintf(FreqBuffer, FREQ_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_5MVG).getText());
+    Freq.setWildcard(FreqBuffer);
+    Freq.setTypedText(touchgfx::TypedText(T___SINGLEUSE_0RII));
+    add(Freq);
 
-    boxDC_current.setXY(260, 165);
-    boxDC_current.setProgressIndicatorPosition(0, 0, 200, 18);
-    boxDC_current.setRange(0, 100);
-    boxDC_current.setDirection(touchgfx::AbstractDirectionProgress::RIGHT);
-    boxDC_current.setBackground(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BOXPROGRESS_THICK_SMALL_ID));
-    boxDC_current.setColor(touchgfx::Color::getColorFromRGB(0, 240, 255));
-    boxDC_current.setValue(50);
-    add(boxDC_current);
+    boxFreq.setXY(260, 64);
+    boxFreq.setProgressIndicatorPosition(0, 0, 200, 18);
+    boxFreq.setRange(100, 1000);
+    boxFreq.setDirection(touchgfx::AbstractDirectionProgress::RIGHT);
+    boxFreq.setBackground(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BOXPROGRESS_THICK_SMALL_ID));
+    boxFreq.setColor(touchgfx::Color::getColorFromRGB(0, 240, 255));
+    boxFreq.setValue(1000);
+    add(boxFreq);
 
-    box1.setPosition(0, 203, 480, 117);
+    AC_voltage.setPosition(20, 1, 240, 48);
+    AC_voltage.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    AC_voltage.setLinespacing(0);
+    Unicode::snprintf(AC_voltageBuffer, AC_VOLTAGE_SIZE, "%s", touchgfx::TypedText(T_AC_VOLTAGE).getText());
+    AC_voltage.setWildcard(AC_voltageBuffer);
+    AC_voltage.setTypedText(touchgfx::TypedText(T___SINGLEUSE_2BLA));
+    add(AC_voltage);
+
+    boxAC_voltage.setXY(260, 16);
+    boxAC_voltage.setProgressIndicatorPosition(0, 0, 200, 18);
+    boxAC_voltage.setRange(0, 10);
+    boxAC_voltage.setDirection(touchgfx::AbstractDirectionProgress::RIGHT);
+    boxAC_voltage.setBackground(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BOXPROGRESS_THICK_SMALL_ID));
+    boxAC_voltage.setColor(touchgfx::Color::getColorFromRGB(0, 240, 255));
+    boxAC_voltage.setValue(0);
+    add(boxAC_voltage);
+
+    box1.setPosition(0, 193, 480, 127);
     box1.setColor(touchgfx::Color::getColorFromRGB(132, 151, 181));
     add(box1);
 
-    Phase_shift_head.setXY(26, 221);
+    Phase_shift_head.setXY(20, 206);
     Phase_shift_head.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Phase_shift_head.setLinespacing(0);
     Phase_shift_head.setTypedText(touchgfx::TypedText(T___SINGLEUSE_3FGH));
     add(Phase_shift_head);
 
-    Phase_shift_1.setPosition(19, 251, 70, 48);
+    Phase_shift_1.setPosition(7, 224, 90, 48);
     Phase_shift_1.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Phase_shift_1.setLinespacing(0);
     Unicode::snprintf(Phase_shift_1Buffer, PHASE_SHIFT_1_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_X3MD).getText());
@@ -86,7 +103,7 @@ Screen1ViewBase::Screen1ViewBase() :
     Phase_shift_1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_RNFM));
     add(Phase_shift_1);
 
-    Phase_shift_2.setPosition(112, 251, 70, 48);
+    Phase_shift_2.setPosition(99, 224, 90, 48);
     Phase_shift_2.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Phase_shift_2.setLinespacing(0);
     Unicode::snprintf(Phase_shift_2Buffer, PHASE_SHIFT_2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_DQSS).getText());
@@ -94,13 +111,13 @@ Screen1ViewBase::Screen1ViewBase() :
     Phase_shift_2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_6YFR));
     add(Phase_shift_2);
 
-    Phase_shift_3.setXY(230, 251);
+    Phase_shift_3.setXY(228, 224);
     Phase_shift_3.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Phase_shift_3.setLinespacing(0);
     Phase_shift_3.setTypedText(touchgfx::TypedText(T___SINGLEUSE_JE01));
     add(Phase_shift_3);
 
-    Phase_shift_4.setPosition(305, 251, 70, 48);
+    Phase_shift_4.setPosition(288, 224, 90, 48);
     Phase_shift_4.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Phase_shift_4.setLinespacing(0);
     Unicode::snprintf(Phase_shift_4Buffer, PHASE_SHIFT_4_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_FZ21).getText());
@@ -108,7 +125,7 @@ Screen1ViewBase::Screen1ViewBase() :
     Phase_shift_4.setTypedText(touchgfx::TypedText(T___SINGLEUSE_B8FJ));
     add(Phase_shift_4);
 
-    Phase_shift_5.setPosition(402, 251, 70, 48);
+    Phase_shift_5.setPosition(384, 224, 90, 48);
     Phase_shift_5.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Phase_shift_5.setLinespacing(0);
     Unicode::snprintf(Phase_shift_5Buffer, PHASE_SHIFT_5_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_5CC1).getText());
@@ -116,7 +133,7 @@ Screen1ViewBase::Screen1ViewBase() :
     Phase_shift_5.setTypedText(touchgfx::TypedText(T___SINGLEUSE_EPG0));
     add(Phase_shift_5);
 
-    image1.setXY(444, 0);
+    image1.setXY(444, 1);
     image1.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_RADIOBUTTON_RADIO_MEDIUM_ROUND_ON_ACTIVE_ID));
     add(image1);
 }

@@ -5,6 +5,12 @@
   </Languages>
   <Texts>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_5MVG" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_0RII" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">f: &lt;value&gt;</Translation>
+      </Text>
       <Text Id="__SingleUse_RAFL" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">0</Translation>
       </Text>

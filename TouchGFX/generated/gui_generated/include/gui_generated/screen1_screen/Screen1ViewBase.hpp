@@ -41,12 +41,14 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::Box Background;
-    touchgfx::TextAreaWithOneWildcard AC_voltage;
-    touchgfx::BoxProgress boxAC_voltage;
-    touchgfx::TextAreaWithOneWildcard DC_voltage;
-    touchgfx::BoxProgress boxDC_voltage;
     touchgfx::TextAreaWithOneWildcard DC_current;
     touchgfx::BoxProgress boxDC_current;
+    touchgfx::TextAreaWithOneWildcard DC_voltage;
+    touchgfx::BoxProgress boxDC_voltage;
+    touchgfx::TextAreaWithOneWildcard Freq;
+    touchgfx::BoxProgress boxFreq;
+    touchgfx::TextAreaWithOneWildcard AC_voltage;
+    touchgfx::BoxProgress boxAC_voltage;
     touchgfx::Box box1;
     touchgfx::TextArea Phase_shift_head;
     touchgfx::TextAreaWithOneWildcard Phase_shift_1;
@@ -59,12 +61,14 @@ protected:
     /*
      * Wildcard Buffers
      */
-    static const uint16_t AC_VOLTAGE_SIZE = 20;
-    touchgfx::Unicode::UnicodeChar AC_voltageBuffer[AC_VOLTAGE_SIZE];
-    static const uint16_t DC_VOLTAGE_SIZE = 20;
-    touchgfx::Unicode::UnicodeChar DC_voltageBuffer[DC_VOLTAGE_SIZE];
     static const uint16_t DC_CURRENT_SIZE = 20;
     touchgfx::Unicode::UnicodeChar DC_currentBuffer[DC_CURRENT_SIZE];
+    static const uint16_t DC_VOLTAGE_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar DC_voltageBuffer[DC_VOLTAGE_SIZE];
+    static const uint16_t FREQ_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar FreqBuffer[FREQ_SIZE];
+    static const uint16_t AC_VOLTAGE_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar AC_voltageBuffer[AC_VOLTAGE_SIZE];
     static const uint16_t PHASE_SHIFT_1_SIZE = 20;
     touchgfx::Unicode::UnicodeChar Phase_shift_1Buffer[PHASE_SHIFT_1_SIZE];
     static const uint16_t PHASE_SHIFT_2_SIZE = 20;

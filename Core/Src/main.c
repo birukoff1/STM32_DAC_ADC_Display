@@ -60,8 +60,9 @@ uint32_t i = 0; // Counter
 uint16_t V_DAC[N_DAC_voltage]; // Values of the generator
 
 volatile float V_AC;
-volatile float V_DC;
-volatile float I_DC;
+int Frequency;
+int V_DC;
+int I_DC;
 int Phase_shift[5]; // 5 channels for the generator
 int V_DAC_phase[5];
 
@@ -104,6 +105,12 @@ volatile float V_ADC[N_ADC_channels];
 
 volatile float V_ADC_max = 3.0f;
 
+// Conversion of ADC voltage to frequency
+int FreqMax = 1000;
+int FreqMin = 100;
+
+volatile float a_freq;
+volatile float b_freq;
 
 // Display
 uint8_t ShowImage = 0;
@@ -187,6 +194,8 @@ int main(void)
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET); // CB High
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_SET); // CS Low
 
+  a_freq = (FreqMax - FreqMin) / V_ADC_max;
+  b_freq = FreqMin;
 
   // Initial states for the display
 
@@ -199,58 +208,59 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
-	if (systemMode == MODE_SETUP) // Reading the ADC signals and updating the display
-	{
-		// ADC
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET); // CB Low
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET); // CB High
-		usDelay(10);
-
-		V_AC = 10.0f/V_ADC_max*V_ADC[1];
-
-		V_DC = V_ADC[2];
-		I_DC = V_ADC[3];
-
-		Phase_shift[0] = (int)(180.0f/V_ADC_max/2*(V_ADC[4] - V_ADC_max));
-		Phase_shift[1] = (int)(180.0f/V_ADC_max/2*(V_ADC[5] - V_ADC_max));
-		Phase_shift[2] = (int)(180.0f/V_ADC_max/2*(V_ADC[6] - V_ADC_max));
-		Phase_shift[3] = (int)(180.0f/V_ADC_max/2*(V_ADC[7] - V_ADC_max));
-		Phase_shift[4] = (int)(180.0f/V_ADC_max/2*(V_ADC[0] - V_ADC_max));
-
-
-		// Display
-		touchgfxSignalVSync();
-		MX_TouchGFX_Process();
-	}
-	else // Generating the voltage
-	{
-
-		if (ShowImage == 1)
+	  if (systemMode == MODE_SETUP) // Reading the ADC signals and updating the display
 		{
+			// ADC
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET); // CB Low
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET); // CB High
+			usDelay(10);
+
+			V_AC = 10.0f/V_ADC_max*V_ADC[1];
+			Frequency = (int)(V_ADC[2]*a_freq + b_freq);
+
+			V_DC = (int)(500.0f*V_ADC[3]);
+			I_DC = (int)(1000.0f*V_ADC[4]);
+
+			Phase_shift[0] = (int)(180.0f/(V_ADC_max/2)*(V_ADC[5] - V_ADC_max/2));
+			Phase_shift[1] = (int)(180.0f/(V_ADC_max/2)*(V_ADC[6] - V_ADC_max/2));
+			Phase_shift[3] = (int)(180.0f/(V_ADC_max/2)*(V_ADC[7] - V_ADC_max/2));
+			Phase_shift[4] = (int)(180.0f/(V_ADC_max/2)*(V_ADC[0] - V_ADC_max/2));
+
+
+			// Display
 			touchgfxSignalVSync();
 			MX_TouchGFX_Process();
 		}
+		else // Generating the voltage
+		{
 
-		// DAC
-		V_DAC_phase[0] = (i + (Phase_shift[0] * N_DAC_voltage) / 360) % N_DAC_voltage;
-		V_DAC_phase[1] = (i + (Phase_shift[1] * N_DAC_voltage) / 360) % N_DAC_voltage;
-		V_DAC_phase[2] = (i + (Phase_shift[2] * N_DAC_voltage) / 360) % N_DAC_voltage;
-		V_DAC_phase[3] = (i + (Phase_shift[3] * N_DAC_voltage) / 360) % N_DAC_voltage;
-		V_DAC_phase[4] = (i + (Phase_shift[4] * N_DAC_voltage) / 360) % N_DAC_voltage;
+			if (ShowImage == 1)
+			{
+				touchgfxSignalVSync();
+				MX_TouchGFX_Process();
+			}
 
-		DAC8568_Write(V_AC*V_DAC[V_DAC_phase[0]], 2); // Channel B
-		DAC8568_Write(V_AC*V_DAC[V_DAC_phase[1]], 4); // Channel D
-		DAC8568_Write(V_AC*V_DAC[V_DAC_phase[2]], 6); // Channel F
-		DAC8568_Write(V_AC*V_DAC[V_DAC_phase[3]], 8); // Channel H
-		DAC8568_Write(V_AC*V_DAC[V_DAC_phase[4]], 7); // Channel G
+			// DAC
+			V_DAC_phase[0] = (i + (Phase_shift[0] * N_DAC_voltage) / 360) % N_DAC_voltage;
+			V_DAC_phase[1] = (i + (Phase_shift[1] * N_DAC_voltage) / 360) % N_DAC_voltage;
+			V_DAC_phase[2] = (i + (Phase_shift[2] * N_DAC_voltage) / 360) % N_DAC_voltage;
+			V_DAC_phase[3] = (i + (Phase_shift[3] * N_DAC_voltage) / 360) % N_DAC_voltage;
+			V_DAC_phase[4] = (i + (Phase_shift[4] * N_DAC_voltage) / 360) % N_DAC_voltage;
 
-		i++;
-		if (i >= N_DAC_voltage)
-		  i = 0;
+			DAC8568_Write(V_AC*V_DAC[V_DAC_phase[0]], 2); // Channel B
+			DAC8568_Write(V_AC*V_DAC[V_DAC_phase[1]], 4); // Channel D
+			DAC8568_Write(V_AC*V_DAC[V_DAC_phase[2]], 6); // Channel F
+			DAC8568_Write(V_AC*V_DAC[V_DAC_phase[3]], 8); // Channel H
+			DAC8568_Write(V_AC*V_DAC[V_DAC_phase[4]], 7); // Channel G
 
-	}
+			i++;
+			if (i >= N_DAC_voltage)
+			  i = 0;
 
+		}
+    /* USER CODE END WHILE */
+
+  //MX_TouchGFX_Process();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

@@ -36,12 +36,20 @@ void Screen1View::UpdateValues()
 	}
 	boxAC_voltage.invalidate();
 
+	// AC voltage frequency
+	touchgfx::Unicode::snprintf(FreqBuffer,FREQ_SIZE,"%i", Frequency);
+	Freq.invalidate();
+
+	boxFreq.setValue(Frequency);
+	boxDC_current.invalidate();
+
+
 	// DC voltage
-	touchgfx::Unicode::snprintfFloat(DC_voltageBuffer,DC_VOLTAGE_SIZE,"%.2f", V_DC);
+	touchgfx::Unicode::snprintf(DC_voltageBuffer,DC_VOLTAGE_SIZE,"%i", V_DC);
 	DC_voltage.invalidate();
 
     boxDC_voltage.setValue(V_DC);
-	if (V_DC > 700.0f)
+	if (V_DC > 700)
 	{
 		boxDC_voltage.setColor(touchgfx::Color::getColorFromRGB(200, 15, 60));
 	}
@@ -52,11 +60,11 @@ void Screen1View::UpdateValues()
 	boxDC_voltage.invalidate();
 
 	// DC current
-	touchgfx::Unicode::snprintfFloat(DC_currentBuffer,DC_CURRENT_SIZE,"%.2f", I_DC);
+	touchgfx::Unicode::snprintf(DC_currentBuffer,DC_CURRENT_SIZE,"%i", I_DC);
 	DC_current.invalidate();
 
 	boxDC_current.setValue(I_DC);
-	if (I_DC > 120.0f)
+	if (I_DC > 2000)
 	{
 		boxDC_current.setColor(touchgfx::Color::getColorFromRGB(200, 15, 60));
 	}
